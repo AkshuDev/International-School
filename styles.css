@@ -1,0 +1,12 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Roboto', sans-serif;
+    background-color: #ECF0F1;
+    height: 100vh;
+}
+
+.container { 
+    width: 80%;
+    padding: 10px;
+}
