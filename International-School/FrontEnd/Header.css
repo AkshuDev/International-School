@@ -6,6 +6,32 @@ Text Color: #2C3E50 (Dark Blue, same as Primary Color)
 Secondary Text Color: #7F8C8D (Gray)
 Footer Background: #34495E (Deep Blue) */
 
+.MainLogo{
+  width: 40px;
+  margin-right: 10px;
+  transition: transform 0.5s ease-in-out;
+  padding-top: 4px;
+  padding-bottom: 0px;
+}
+
+.mainText{
+  transition: transform 0.5s ease-in-out;
+}
+
+.mainText:hover{
+  transform: scale(1.1);
+}
+
+.MainLogo:hover{
+  float: none;
+  transform: scale(1.2);
+}
+
+.name.ml{
+  display: flex;
+  align-items: center;
+}
+
 .header{
   position: fixed;
   top: 0;
@@ -55,4 +81,20 @@ text-decoration: none;
   padding: 0.2em 1em;
   font-size: large;
   border: 1px solid teal;
+}
+
+#LoginButton {
+  display: flex-end;
+}
+
+#LoginButton img {  
+  padding: 0.2em 1em;
+  width: 50px;
+  transition: transform 0.2s ease-in-out;
+}
+
+#LoginButton img:hover {  
+  color: white;
+  padding: 0.2em 1em;
+  transform: scale(1.2);
 }
