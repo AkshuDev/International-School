@@ -20,7 +20,7 @@ export function SignUp(username, password, errorElement="", transferPage="", add
     var email = username
 
     if (addSufix == true){
-        email = username + "@InterNationalSchool"
+        email = username + "@InterNationalSchool.com"
     }
 
     createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
@@ -48,7 +48,7 @@ export function Login(username, password, errorElement="", transferPage="", addS
     var email = username
 
     if (addSufix == true){
-        email = username + "@InterNationalSchool"
+        email = username + "@InterNationalSchool.com"
     }
 
     signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
@@ -76,7 +76,7 @@ export function ResetPassword(email, errorElement = "", addSufix=false){
     var email = email
 
     if (addSufix == true){
-        email = email + "@InterNationalSchool"
+        email = email + "@InterNationalSchool.com"
     }
     // Password reset
     sendPasswordResetEmail(auth, email).then(() => {
