@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InterNational School</title>
+    <link rel="icon" href="Assets/logo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body>
+    <div class="Main">
+      <a href="./index.html"><img src="./Assets/logo-highres.png"></a>
+      <h1>SignUp</h1>
+    </div>
+    <div class="login-card">
+      <form id="Login">
+        <label>Username: </label>
+        <input type="text" id="username" aria-required="true" placeholder="Username" />
+        <label>Password: </label>
+        <input type="password" aria-required="true" id="password" placeholder="Password" />
+        <button type="submit" id="LoginButton">SignUp</button>
+        <p id="errorMessage">Error Signing Up</p>
+
+      </form>
+      <a href="./login.html" id="loginLink"><p>or Login</p></a>
+    </div>
+
+    <!-- <div class="school-notices">
+        <h3>SCHOOL NOTICES</h3>
+        <div>
+            <ul>
+                <p><b>MID-TERM (Classes 7 to 10):</b>10-OCT to 20-OCT</p>
+                <p>AD-MAD-SHOW: </p>
+
+            </ul>
+        </div>
+      </div>
+
+            </form>
+        </div> -->
+    <script type="module">import {SignUp} from "../BackEnd/server.js";
+        // Get the form element
+        const loginForm = document.getElementById('Login');
+        const errorMessage = document.getElementById('errorMessage');
+
+        // Add event listener to the submit button
+        loginForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent form submission
+
+            // Get the username and password values
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            SignUp(username, password, errorMessage, "index.html");
+
+            // Do something with the username and password
+            console.log('Username:', username);
+            console.log('Password:', password);
+
+            // You can perform further validation or send the data to a server for authentication
+        });</script>
+  </body>
+</html>
