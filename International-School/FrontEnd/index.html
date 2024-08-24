@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>InterNational School</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="icon" href="Assets/logo.png" type="image/x-icon">
+  </head>
+  <body>
+    <div class="header">
+     <div class="logo">
+        <a href="#"><img src="./Assets/logo-highres.png" alt="Logo" class="MainLogo"></a>
+        <h1>InterNational School</h1>
+     </div>
+
+      <div class="nav">
+        <!-- <a href="#welcome-page" class="active">Welcome</a> -->
+        <a href="#mission-page">Mission</a>
+        <a href="#admissions-page">Admissions</a>
+        <a href="#academics-page">Academics</a>
+        <a href="./about.html">About</a>
+      </div>
+      <a class="login" id="LoginButton" href="login.html"><img alt="Login" src="Assets/Account.png"></a>
+
+    </div>
+
+    <div id="page-content">
+      <div id="welcome-page" class="page">
+        <h2>Welcome Page</h2>
+
+        <p>
+          Welcome to our school! We are a community committed to providing a
+          high-quality education to all of our students. Our goal is to help
+          each student reach their full potential and become a responsible,
+          engaged citizen.
+        </p>
+      </div>
+
+      <div id="mission-page" class="page">
+        <h2>Our Mission</h2>
+        <p>
+          Our mission is to provide a safe, nurturing environment where students
+          can learn and grow. We believe that every student is unique and
+          capable of success, and we strive to help each one discover their
+          passions and talents.
+        </p>
+      </div>
+
+      <div id="admissions-page" class="page">
+        <h2>Admissions</h2>
+        <p>
+          We welcome students of all backgrounds and abilities. To apply, please
+          visit our admissions page and fill out the online application. We look
+          forward to hearing from you!
+        </p>
+      </div>
+
+      <div id="academics-page" class="page">
+        <h2>Academics and Non-Academics</h2>
+        <p>
+          We offer a wide range of academic and non-academic programs to help
+          our students grow and develop. Our academic offerings include core
+          subjects such as math, science, and language arts, as well as
+          electives such as art, music, and physical education. In addition, we
+          offer a variety of extracurricular activities, including sports teams,
+          clubs, and service organizations.
+        </p>
+      </div>
+    </div>
+
+    <!--Firebase Setup and stuff-->
+    <script src="https://www.gstatic.com/firebasejs/9.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.8.0/firebase-auth.js"></script>
+    <script src="../BackEnd/server.js"></script>
+
+    <script src="./script.js"></script>
+
+    <script src="./encryptor_decryptor.js" type="module"></script>
+    <script src="./MongoDB_Connector.js" type="module"></script>
+    <script src="./index.js" type="module"></script>
+  </body>
+</html>
