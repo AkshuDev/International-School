@@ -1,3 +1,4 @@
+import {Login} from "../BackEnd/server.js";
 // Get the form element
 const loginForm = document.getElementById('Login');
 const errorMessage = document.getElementById('errorMessage');
@@ -10,23 +11,7 @@ loginForm.addEventListener('submit', (event) => {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    fetch('/Login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ username, password })
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        errorMessage.style.display = 'none';
-    })
-    .catch(err => {
-        errorMessage.textContent = 'Invalid username or password';
-        errorMessage.style.display = 'block';
-        console.log(err);
-    });
+    Login(username, password, errorMessage, "./index.html");
 
     // Do something with the username and password
     console.log('Username:', username);
@@ -34,3 +19,4 @@ loginForm.addEventListener('submit', (event) => {
 
     // You can perform further validation or send the data to a server for authentication
 });
+

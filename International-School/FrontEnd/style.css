@@ -8,6 +8,14 @@ body {
   font-family: Arial, sans-serif;
 }
 
+.MainLogo{
+  transition: transform 0.2s ease-in-out;
+}
+
+.MainLogo:hover{
+  transform: scale(1.2);
+}
+
 .header {
   cursor: default;
   background-color: #2c3e50;   
