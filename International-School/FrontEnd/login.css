@@ -9,7 +9,7 @@
 body {
   font-family: Arial, sans-serif;
   height: 100vh;
-  background-image: linear-gradient(to top left, rgb(24, 53, 140), rgb(67, 15, 95));
+  background-image: linear-gradient(to bottom, #F7F7F7, #E5E5E5);
   display: flex; /* added to center the content vertically */
   justify-content: center; /* added to center the content horizontally */
   align-items: center; /* added to center the content vertically */
@@ -29,32 +29,8 @@ a{
 #ForgotPassword:hover {
   color: black;
 }
+/* 
 
-.Main {
-  display: flex;
-  padding-top: 120px;
-  padding-left: 100px;
-  align-items: center;
-  justify-items: center;
-  text-align: center;
-}
-
-.Main img{
-  padding-top: 70px;
-  transition: transform 0.2s ease-in-out;
-  width: 170px;
-}
-
-.Main img:hover{
-  transform: scale(1.2);
-}
-
-.Main h1{
-  font-size: 100px;
-  font-weight: bolder;
-  padding-left: 70px;
-  padding-bottom: 20px;
-}
 
 /* Container Styles */
 
@@ -122,6 +98,8 @@ button[type="submit"] {
   border-radius: 5px;
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 button[type="submit"]:hover {
@@ -148,4 +126,9 @@ button[type="submit"]:hover {
   width: 5em;
   height: 5em;
   margin-right: 5em;
+  transition: transform 0.3s ease-in-out;
+}
+
+.school-logo img:hover {
+  transform: scale(1.1);
 }
