@@ -1,104 +1,125 @@
-a {
-  text-decoration: none;
-  color: teal;
-  margin-bottom: 5em;
-  cursor: pointer;
-}
+/* Global Styles */
 
-a:hover {
-  color: black;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   font-family: Arial, sans-serif;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin: 0 auto;
-  text-align: left;
-  cursor: default;
-  padding: 3em;
+  height: 100vh;
+  background-image: linear-gradient(to top left, rgb(24, 53, 140), rgb(67, 15, 95));
+  display: flex; /* added to center the content vertically */
+  justify-content: center; /* added to center the content horizontally */
+  align-items: center; /* added to center the content vertically */
 }
 
-#errorMessage {
-  color: rgba(255, 0, 0, 0);
-  display: none;
+a{
+  color: teal;
+  text-decoration: none;
 }
+
+#ForgotPassword {
+  text-decoration: none;
+  color: teal;
+  transition: color 0.3s ease-in-out; /* added for smooth hover effect */
+}
+
+#ForgotPassword:hover {
+  color: black;
+}
+
+/* Container Styles */
+
+.container {
+  max-width: 400px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px; /* added for rounded corners */
+}
+
+/* Login Card Styles */
 
 .login-card {
-  align-content: right;
-  width: 300px;
-  background-color: #f7f7f7;
-  padding: 1.5em; /* using em units for padding */
+  align-items: center;
+  display: flex;
+  padding: 20px;
+  background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin: 40px auto;
-  position: absolute;
-  top: 30%;
-  right: 10%;
-  transform: translateY(-50%);
 }
 
-.login-card h2 {
-  text-align: center;
-  margin-bottom: 0.5em; /* using em units for margin */
+/* Form Styles */
+
+h2 {
+  margin-top: 0;
+  font-weight: bold;
+  font-size: xx-large;
   color: #333;
+  padding-bottom: 1em;
 }
 
-.login-card form {
+form {
+  margin-top: 20px;
+}
+
+/* Button Styles */
+
+.buttons {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
 }
 
-.login-card input[type="text"],
-.login-card input[type="password"] {
-  width: 100%;
-  height: 2.5em; /* using em units for height */
-  margin-bottom: 0.5em; /* using em units for margin */
-  padding: 0.5em; /* using em units for padding */
+input[type="text"], input[type="password"] {
+  width: 90%;
+  padding: 1em;
+  margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  transition: transform 0.3s ease-in-out;
 }
 
-.login-card input[type="text"]:focus,
-.login-card input[type="password"]:focus {
-  border-color: #aaa;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+input[type="text"]:hover, input[type="password"]:hover {
+  transform: scale(1.1);
 }
 
-.login-card button[type="submit"] {
-  width: 100%;
-  height: 2.5em; /* using em units for height */
-  background-color: #4caf50;
+button[type="submit"] {
+  width: 50%;
+  padding: 10px;
+  background-color: #2c3e50;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: transform 0.3s ease-in-out;
 }
 
-.login-card button[type="submit"]:hover {
-  background-color: #3e8e41;
+button[type="submit"]:hover {
+  background-image: linear-gradient(to top left, rgb(67, 15, 95), rgb(24, 53, 140));
+  transform: scale(1.05); /* added for a subtle hover effect */
 }
 
-.login-card p {
+/* Error Message Styles */
+
+#errorMesssage {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* School Logo Styles */
+
+.school-logo {
   text-align: center;
-  margin-top: 0.5em; /* using em units for margin */
-  font-size: 0.875em; /* using em units for font size */
-  color: #666;
+  margin-top: 20px;
 }
 
-.login-card a {
-  text-decoration: none;
-  color: #4caf50;
-}
-
-.login-card a:hover {
-  color: #3e8e41;
-}
-
-.school-notices div{
-   border: 1px solid black;
-   width: 50%;
+.school-logo img {
+  width: 5em;
+  height: 5em;
+  margin-right: 5em;
 }
