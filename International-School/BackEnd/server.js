@@ -1,5 +1,5 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/9.1.1/firebase-app.js";
-import {signInWithEmailAndPassword, sendPasswordResetEmail, createUserWithEmailAndPassword, getAuth} from "https://www.gstatic.com/firebasejs/9.1.1/firebase-auth.js"
+import {signInWithEmailAndPassword, sendPasswordResetEmail, RecaptchaVerifier, createUserWithEmailAndPassword, getAuth, signInWithPhoneNumber} from "https://www.gstatic.com/firebasejs/9.1.1/firebase-auth.js"
 
 const firebaseConfig = {
     apiKey: "AIzaSyAT08qUZxvau0g2qIL7wC3d14r9Q8vyuRc",
@@ -16,31 +16,85 @@ initializeApp(firebaseConfig);
 
 const auth = getAuth();
 
-export function SignUp(username, password, errorElement="", transferPage="", addSufix=true){
+export function ResetPasswordViaPhone(email, phone, errorElement = "", addSufix=false){
+    
+}
+
+export function SignUp(username, password, errorElement="", transferPage="", addSufix=true, phone="", recaptcha_tok){
     var email = username
+    var addPhone = false;
+
+    if (phone != ""){
+        console.log("Phone number found!")
+        addPhone = true;
+    }
 
     if (addSufix == true){
         email = username + "@InterNationalSchool.com"
     }
 
-    createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
-    const user = userCredential.user;
-    console.log('User created successfully:', user);
-        // Show success message
-        if (errorElement != ""){
-            errorElement.style.display = "none";
-        }
-        if (transferPage != ""){
-            window.location.href = transferPage;
-        }
-        return Promise.resolve('User created successfully:' + user);
-    }).catch((error) => {
-        console.error('Error creating user:', error);
-        if (errorElement != ""){
-            errorElement.style.display = "block";
-        }
-        return Promise.reject(error);
-    });
+    if (addPhone){
+        signInWithPhoneNumber(auth, phone, recaptcha_tok)
+        .then((confirmationResult) => {
+            // Prompt user for verification code
+            const code = prompt("Enter the verification code:");
+
+            // Confirm verification code
+            confirmationResult.confirm(code)
+            .then(() => {
+                // Handle success
+                createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
+                    const user = userCredential.user;
+                    console.log('User created successfully:', user);
+                    // Show success message
+                    if (errorElement != ""){
+                        errorElement.style.display = "none";
+                    }
+
+                    signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+                        const user = userCredential.user;
+                        console.log('User signed in successfully:', user);
+                        // Redirect to dashboard or show success message
+                        localStorage.setItem('user', JSON.stringify(user));
+                        if (errorElement != ""){
+                            errorElement.style.display = "none";
+                        }
+                        if (transferPage != ""){
+                            window.location.href = transferPage;
+                        }
+                        return Promise.resolve('User signed in successfully:' + user);
+                    }).catch((error) => {
+                        console.error('Error signing in:', error);
+                        if (errorElement != ""){
+                            errorElement.style.display = "block";
+                        }
+                        return Promise.reject(error);
+                    });
+                }).catch((error) => {
+                    console.error('Error creating user:', error);
+                    if (errorElement != ""){
+                        errorElement.style.display = "block";
+                    }
+                    return Promise.reject(error);
+                });
+                console.log("User created successfully:", user);
+                if (errorElement != ""){
+                    errorElement.style.display = "none";
+                }
+                if (transferPage != ""){
+                    window.location.href = transferPage;
+                }
+            })
+            .catch((error) => {
+                // Handle error confirming code
+                console.error("Error confirming code:", error);
+            });
+        })
+        .catch((error) => {
+            // Handle error sending verification code
+            console.error("Error sending verification code:", error);
+        });
+    }
 };
 
 export function Login(username, password, errorElement="", transferPage="", addSufix=true){

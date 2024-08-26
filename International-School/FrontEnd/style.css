@@ -38,6 +38,11 @@ body {
   height: 3em;
   margin-right: 1em;
   margin-left: 10em;
+  transition: transform 0.3s ease-in-out;
+}
+
+.header div.logo img:hover{
+  transform: scale(1.2);
 }
 
 .header div.logo{
@@ -45,11 +50,6 @@ body {
   align-items: center;
   justify-content: space-between;
   font-size: small;
-  transition: transform 0.5s ease-in-out;
-}
-
-.header div.logo:hover{
-  transform: scale(1.1);
 }
 
 .page {
@@ -77,6 +77,25 @@ body {
   border-bottom: 1px solid teal;
 }
 
+.nav-page {
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-page a {
+  text-decoration: none;
+  color: gray;
+  padding: 10px;
+  transition: transform 0.3s ease-in-out, border-bottom 0.3s ease;
+}
+
+.nav-page a:hover {
+  transform: scale(1.1);
+  color: white;
+  border-bottom: 1px solid teal;
+}
+
 #LoginButton {
   display: flex-end;
 }
@@ -84,7 +103,7 @@ body {
 #LoginButton img {
   padding: 0.2em 1em;
   width: 3em;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.3s ease-in-out;
 }
 
 #LoginButton img:hover {

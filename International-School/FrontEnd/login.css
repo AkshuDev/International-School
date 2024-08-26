@@ -76,7 +76,7 @@ form {
   justify-content: space-between;
 }
 
-input[type="text"], input[type="password"] {
+input{
   width: 90%;
   padding: 1em;
   margin-bottom: 20px;
@@ -85,7 +85,7 @@ input[type="text"], input[type="password"] {
   transition: transform 0.3s ease-in-out;
 }
 
-input[type="text"]:hover, input[type="password"]:hover {
+input:hover{
   transform: scale(1.1);
 }
 
@@ -110,7 +110,7 @@ button[type="submit"]:hover {
 /* Error Message Styles */
 
 #errorMesssage {
-  color: rgb(255, 0, 0);
+  color: red;
   font-size: 14px;
   margin-top: 10px;
   display: none;
