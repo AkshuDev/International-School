@@ -97,7 +97,6 @@
             return;
           }
 
-          //Check if password is atleast over 8 characters long
           const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
           if (!passwordRegex.test(password)) {
             errorMessage.textContent = "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character";
