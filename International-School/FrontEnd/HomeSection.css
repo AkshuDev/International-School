@@ -15,18 +15,8 @@
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
-  border-radius: 5px;
   filter: brightness(0.5);
   z-index: -1;
-}
-
-#WelcomeTo{
-  padding-top:150px;
-  font-size: 70px;
-}
-
-#p1{
-  margin-top: 10px;
 }
 
 #welcome-page ::after {
@@ -36,18 +26,7 @@
   padding: 15em;
 }
 
-p:not(#mission-page p){
+p{
   margin-top: 8em;
-  font-size: 1.3em;
-}
-
-#mission-page p{
-  margin-top: 6em;
-  margin-right: 10px;
-  font-size: 30px;
-  font-family: Times;
-}
-
-#academics-page{
-  padding-top: 70px;
+    font-size: 1.3em;
 }

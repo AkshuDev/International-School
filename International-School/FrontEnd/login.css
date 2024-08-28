@@ -8,7 +8,7 @@
 
 body {
   font-family: Arial, sans-serif;
-  height: 100vh;
+  min-height: 100vh;
   background-image: linear-gradient(to bottom, #F7F7F7, #E5E5E5);
   display: flex; /* added to center the content vertically */
   justify-content: center; /* added to center the content horizontally */

@@ -18,9 +18,13 @@
         <a href="#mission-page">Mission</a>
         <a href="#academics-page">Academics</a>
       </div>
-      <a href="about.html">About</a>
-      <a href="./signup.html">Admissions</a>
-      <a class="login" id="LoginButton" href="#" onclick="checkLogin(event)"><img alt="Login" src="Assets/Account.png"/></a>
+      <div>
+        <a href="about.html">About</a>
+        <a href="./signup.html">Admissions</a>
+      </div>
+      <a class="login" id="LoginButton" href="#" onclick="checkLogin(event)"
+        ><img alt="Login" src="Assets/Account.png"
+      /></a>
     </div>
     <div id="page-content">
       <div id="welcome-page" class="page">
@@ -35,14 +39,13 @@
       </div>
 
       <div id="mission-page" class="page">
-        <div class="leftMission">
-        </div>
+        <div class="leftMission"></div>
         <div class="rightMission">
           <p>
-            Our mission is to provide a safe, nurturing environment where students
-            can learn and grow. We believe that every student is unique and
-            capable of success, and we strive to help each one discover their
-            passions and talents.
+            Our mission is to provide a safe, nurturing environment where
+            students can learn and grow. We believe that every student is unique
+            and capable of success, and we strive to help each one discover
+            their passions and talents.
           </p>
         </div>
       </div>
@@ -60,8 +63,14 @@
       </div>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/9.8.0/firebase-app.js" type="module"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.8.0/firebase-auth.js" type="module"></script>
+    <script
+      src="https://www.gstatic.com/firebasejs/9.8.0/firebase-app.js"
+      type="module"
+    ></script>
+    <script
+      src="https://www.gstatic.com/firebasejs/9.8.0/firebase-auth.js"
+      type="module"
+    ></script>
     <script src="../BackEnd/server.js" type="module"></script>
 
     <script src="./script.js"></script>
@@ -69,24 +78,23 @@
     <script src="./index.js" type="module"></script>
     <script>
       function checkLogin(event) {
-        // Prevent the default behavior of the anchor tag
         event.preventDefault();
 
-        // Check if the user is logged in (based on session storage)
-        if (localStorage.getItem('user')) {
-          // Redirect to the dashboard page
-          window.location.href = './dashboard.html';
+        if (localStorage.getItem("user")) {
+          window.location.href = "./dashboard.html";
         } else {
-          // If the user is not logged in, redirect to the login page
-          window.location.href = './login.html';
+          window.location.href = "./login.html";
         }
-      };
+      }
     </script>
     <div class="credits">
       <credits id="credits">
         Photo by Pixabay:
-        https://www.pexels.com/photo/red-building-with-clock-tower-207692/
-        Photo by Ann H: https://www.pexels.com/photo/wooden-letters-on-a-cardboard-11022648/
+        https://www.pexels.com/photo/red-building-with-clock-tower-207692/ Photo
+        by Ann H:
+        https://www.pexels.com/photo/wooden-letters-on-a-cardboard-11022648/
+        <a href="https://www.flaticon.com/free-icons/user" title="user icons">User icons created by Freepik - Flaticon</a>
+
       </credits>
     </div>
   </body>
