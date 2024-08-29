@@ -1,185 +1,181 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 header {
-    background-color: #2c3e50;
-    color: white;
-    padding: 0.3em;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid black;
+  background-color: #2c3e50;
+  color: white;
+  padding: 0.3em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
 }
 
-
 header img {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
 }
 
 header h1 {
-    color: #fff;
-    margin: 0;
+  color: #fff;
+  margin: 0;
 }
 
-div.welcome{
-    display: flex;
-    margin-left: 4em;
+div.welcome {
+  display: flex;
+  margin-left: 4em;
 }
 
 div.user-dropdown {
-    cursor: pointer;
-    display: inline-block;
-    align-items: center;
-    margin-right: 4em;
+  cursor: pointer;
+  display: inline-block;
+  align-items: center;
+  margin-right: 4em;
 }
 
-div.user-dropdown img{
-    width: 2em;
-    height: 2em;
+div.user-dropdown img {
+  width: 2em;
+  height: 2em;
 }
 
 div.user-info {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 div.user-dropdown .dropdown-content {
-    display: none;
+  display: none;
 }
 
-div.user-dropdown:hover .dropdown-content{
-     display: block;
-}
-
-.dropdown-content {
-    position: absolute;
-    background-color: #f9f9f9;
-
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown-content a:hover {
-    color: teal;
-}
-
-div.student-details {
-    margin-right: 4em;
-    margin-left: 4em;
-    width: 60;
-}
-
-div.student-details caption {
-    background: teal;
-    padding: 0.3em;
-    border-bottom: 1px solid black;
-}
-
-.table {
-    border: 1px solid teal;
-    text-align: start;
-    width: 100%;
-    top: 0;
-}
-
-tr {
-    border: 1px solid teal;
-    width: 100%;
-}
-
-th {
-    border: 1px solid teal;
-
-}
-
-/* 
-.dropdown {
-    position: absolute;
-    display: inline-block;
-    left: 90%;
+div.user-dropdown:hover .dropdown-content {
+  display: block;
 }
 
 .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+  position: absolute;
+  background-color: #f9f9f9;
 }
 
 .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
 }
 
 .dropdown-content a:hover {
-    background-color: #f1f1f1;
+  color: teal;
 }
 
-.dropdown:hover .dropdown-content {
-    display: block;
-}
+/* Header Section Finished */
+/* Student-Details and Upcoming Events */
 
-.dropdown:hover .dropbtn {
-    /* background-color: #3e8e41; */
-/* 
-div.welcome {
-    display: flex;
-    width: 50%;
-    justify-content: space-around;
-}
-
-.dashboard-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 2em;
+.student-details-and-upcoming-events {
+  display: flex;
+  margin-top: 2em;
 }
 
 .student-details {
-    flex-basis: 40%;
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  top: 0%;
+  width: 60%;
+  margin-left: 4em;
+  display: flex;
+  align-items: center;
+}
+
+.student-details img {
+  height: 10em;
+  margin-left: 2em;
+}
+
+.student-details-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.student-details-table caption {
+  text-align: left;
+  padding: 1em;
+  border: 1px solid #ddd;
+  border-bottom: 0px;
+}
+
+.student-details-table th {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+.student-details-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+.student-details-table tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.student-details-table tr:nth-child(even) {
+  background-color: #f7f7f7;
 }
 
 .upcoming-events {
-    flex-basis: 50%;
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: max-content;
+  margin-left: 1em;
+  display: block;
+  border: 1px solid black;
+  margin-right: 4em;
+  background: rgb(244, 244, 244);
 }
 
-h2 {
-    margin-top: 0;
+.Legend {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid black;
+  height: min-content;
 }
 
-ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+.Legnend p {
+  margin-left: 1em;
+  margin-right: 1em;
 }
 
-li {
-    margin-bottom: 10px;
+.Holiday {
+  background-color: rgb(83, 141, 255);
+  padding: 0.2em;
+  border: 1px solid black;
 }
 
-li ul {
-    margin-left: 20px;
-} */
+.Event {
+  background-color: rgb(87, 251, 65);
+  padding: 0.2em;
+  border: 1px solid black;
+}
+
+.Exam {
+  background-color: rgb(255, 44, 44);
+  padding: 0.2em;
+  border: 1px solid black;
+}
+
+.HolidayText {
+  color: rgb(30, 255, 0);
+}
+.ExamText {
+  color: rgb(255, 44, 44);
+}
+.EventText {
+  color: rgb(83, 141, 255);
+}
+
+.data {
+  padding: 1em;
+  font-size: large;
+}
