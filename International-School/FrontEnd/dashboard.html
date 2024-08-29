@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="./css/dashboard.css" />
+
+    <title>InterNational School</title>
+    <link rel="icon" href="Assets/logo.png" type="image/x-icon" />
+  </head>
+  <body>
+    <header>
+      <div class="welcome">
+        <a href="./index.html"><img src="./Assets/logo-highres.png" alt="School Logo" /></a>
+        <h3>InterNational School</h3>
+      </div>
+          <div class="user-dropdown">
+            <div class="user-info">
+              <img src="./Assets/user.png" alt="user img">
+              <div class="text">
+                <h4>?Username</h4>
+              </div>
+            </div>
+
+            <div class="dropdown-content">
+              <a href="#">Profile</a>
+              <a href="#">Settings</a>
+              <a href="#" onclick="LogOut(event)">Logout</a>
+          </div>
+          </div>
+      </div>
+    </header>
+
+    <div class="dashboard-content">
+      <div class="student-details">
+        <caption>Student Details</caption>
+        <table class="table">
+          <tr>
+            <th>Student Name:</th>
+            <th>?Name</th>
+          </tr>
+          <tr>
+            <th>Standard/Section:</th>
+            <th>?Grade</th>
+          </tr>
+          <tr>
+            <th>DOB:</th>
+            <th>?DOB</th>
+          </tr>
+          <tr>
+            <th>Mobile Number:</th>
+            <th>?Number</th>
+          </tr>
+        </table>
+        <!-- <img src="student-profile-picture.jpg" alt="Student Profile Picture" /> -->
+
+
+       <!-- <h2>Contact Information</h2>
+        <ul>
+          <li>Email: johndoe@example.com</li>
+          <li>Phone: 555-1234</li>
+          <li>Address: 123 Main St, Anytown, USA</li>
+        </ul>
+      </div>
+
+       <div class="upcoming-events">
+        <h2>Upcoming Events</h2>
+        <ul>
+          <li>
+            <h3>School Play</h3>
+            <p>Friday, March 12th at 7:00 PM (Auditorium)</p>
+            <p>
+              Come watch our talented students perform in this year's school
+              play!
+            </p>
+          </li>
+          <li>
+            <h3>Parent-Teacher Conferences</h3>
+            <p>Thursday, March 18th at 2:00 PM (Classrooms)</p>
+            <p>Meet with your child's teachers to discuss their progress.</p>
+          </li>
+          <li>
+            <h3>Spring Break</h3>
+            <p>Monday, March 22nd - Friday, March 26th</p>
+            <p>No school - enjoy your spring break!</p>
+          </li>
+        </ul>
+      </div>
+    </div> -->
+    <script>
+      function LogOut(event) {
+        event.preventDefault();
+
+        if (localStorage.getItem("user")) {
+          localStorage.removeItem("user");
+          localStorage.removeItem("UserDetails");
+          window.location.href = "./index.html";
+        } else {
+          console.log("User is not logged in");
+          window.location.href = "./login.html";
+        }
+      }
+    </script>
+    <script>
+      function getElementsStartingWithQuestionMark() {
+        const elements = document.querySelectorAll("*:not(script):not(style)"); // Exclude scripts and styles
+        const matchingElements = [];
+
+        elements.forEach((element) => {
+          if (element.textContent.startsWith("?")) {
+            matchingElements.push(element);
+          }
+        });
+
+        return matchingElements;
+      };
+
+      const elements = getElementsStartingWithQuestionMark();
+      var username = [];
+      var phone = [];
+      var Name = [];
+      var Admission_No = [];
+      var DOB = [];
+      var Grade = [];
+      var NonIdentified = [];
+
+      //Place Elements in desired arrays
+      elements.forEach((element) => {
+        const text = element.textContent.toLowerCase();
+
+        if (text.includes("username")) {
+          username.push(element);
+          Admission_No.push(element);
+        } else if (text.includes("phone")) {
+          phone.push(element);
+        } else if (text.includes("name")) {
+          Name.push(element);
+        } else if (text.includes("dob")) {
+          DOB.push(element);
+        } else if (text.includes("grade")) {
+          Grade.push(element);
+        } else {
+          NonIdentified.push(element);
+        }
+      });
+
+      //Get Data
+      const data = JSON.parse(localStorage.getItem("UserDetails"));
+
+      //Process text
+      username.forEach((un) => {
+        un.textContent = data.Admission_No;
+      });
+    </script>
+  </body>
+</html>
