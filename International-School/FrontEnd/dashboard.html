@@ -9,7 +9,9 @@
   <body>
     <header>
       <div class="welcome">
-        <a href="./index.html"><img src="./Assets/logo-highres.png" alt="School Logo" /></a>
+        <a href="./index.html"
+          ><img src="./Assets/logo-highres.png" alt="School Logo"
+        /></a>
         <h3>InterNational School</h3>
       </div>
       <div class="user-dropdown">
@@ -23,7 +25,7 @@
         <div class="dropdown-content">
           <a href="#">Profile</a>
           <a href="#">Settings</a>
-          <a href="#">Logout</a>
+          <a onclick="LogOut(event)">Logout</a>
         </div>
       </div>
     </header>
@@ -36,20 +38,20 @@
               Student Details
             </caption>
             <tr>
-              <th>Name:</th>
+              <th>?Name:</th>
               <td id="student-name"></td>
             </tr>
             <tr>
-              <th>Class:</th>
+              <th>?Class:</th>
               <td id="student-class"></td>
             </tr>
             <tr>
-              <th>Phone Number:</th>
-              <td id="student-phone-number">Add this using JavaScipt</td>
+              <th>?Phone Number:</th>
+              <td id="student-phone-number"></td>
             </tr>
             <tr>
-              <th>Admission Number:</th>
-              <td id="student-admission-number">Add this using JavaScipt</td>
+              <th>?Admission Number:</th>
+              <td id="student-admission-number"></td>
             </tr>
           </table>
           <img src="./Assets/user.png" alt="user img" />
@@ -63,11 +65,16 @@
             <p class="Holiday">Holiday</p>
           </div>
           <div class="data">
-            <p class="EventText">Ad-Mad Show (10-Oct 2024)</p><hr/>
-            <p class="ExamText">Mid-Term (21 Sept to 3 Oct 2024)</p><hr/>
-            <p class="HolidayText">Mahatma Gandhi Jayanti (02-Oct)</p><hr/>
-            <p class="HolidayText">Dusshera (12-Oct)</p><hr/>
-            <p class="HolidayText">Guru Nanak Jayanti (15-Nov)</p><hr/>
+            <p class="EventText">Ad-Mad Show (10-Oct 2024)</p>
+            <hr />
+            <p class="ExamText">Mid-Term (21 Sept to 3 Oct 2024)</p>
+            <hr />
+            <p class="HolidayText">Mahatma Gandhi Jayanti (02-Oct)</p>
+            <hr />
+            <p class="HolidayText">Dusshera (12-Oct)</p>
+            <hr />
+            <p class="HolidayText">Guru Nanak Jayanti (15-Nov)</p>
+            <hr />
           </div>
         </div>
       </div>
@@ -86,7 +93,7 @@
         }
       }
     </script>
-    <script>
+    <script type="module">
       function getElementsStartingWithQuestionMark() {
         const elements = document.querySelectorAll("*:not(script):not(style)"); // Exclude scripts and styles
         const matchingElements = [];
@@ -98,7 +105,7 @@
         });
 
         return matchingElements;
-      };
+      }
 
       const elements = getElementsStartingWithQuestionMark();
       var username = [];
@@ -136,6 +143,20 @@
       username.forEach((un) => {
         un.textContent = data.Admission_No;
       });
+    </script>
+    <script type="module">
+      function LogOut(event) {
+        event.preventDefault();
+
+        if (localStorage.getItem("user")) {
+          localStorage.removeItem("user");
+          localStorage.removeItem("UserDetails");
+          window.location.href = "./index.html";
+        } else {
+          console.log("User is not logged in");
+          window.location.href = "./login.html";
+        }
+      }
     </script>
   </body>
 </html>
