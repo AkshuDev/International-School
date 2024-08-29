@@ -24,6 +24,46 @@
           placeholder="Enter your Admisson Number (Username)"
           autofocus
         />
+        <label for="FName">First-Name:</label>
+        <input
+          type="text"
+          id="FName"
+          aria-required="true"
+          placeholder="Enter your First Name"
+          autofocus
+        />
+        <label for="LName">Last-Name:</label>
+        <input
+          type="text"
+          id="LName"
+          aria-required="true"
+          placeholder="Enter your Last Name"
+          autofocus
+        />
+        <label for="DOB">DOB:</label>
+        <input
+          type="text"
+          id="DOB"
+          aria-required="true"
+          placeholder="Enter your Date of Birth (dd-mm-yy)"
+          autofocus
+        />
+        <label for="Grade">Grade:</label>
+        <input
+          type="text"
+          id="Grade"
+          aria-required="true"
+          placeholder="Enter your Grade with Section (GradeSection(Caps))"
+          autofocus
+        />
+        <label for="Age">Age:</label>
+        <input
+          type="text"
+          id="Age"
+          aria-required="true"
+          placeholder="Enter your Age (max: 50)"
+          autofocus
+        />
         <label for="password">Password:</label>
         <input
           type="password"
@@ -56,6 +96,7 @@
     <script src="../BackEnd/server.js" type="module"></script>
     <script type="module">
       import { SignUp } from "../BackEnd/server.js";
+      import {AddData} from "../BackEnd/RTDB.js";
       import {initializeApp} from "https://www.gstatic.com/firebasejs/9.1.1/firebase-app.js";
       import {signInWithEmailAndPassword, sendPasswordResetEmail, RecaptchaVerifier, createUserWithEmailAndPassword, getAuth, signInWithPhoneNumber} from "https://www.gstatic.com/firebasejs/9.1.1/firebase-auth.js"
 
@@ -81,13 +122,17 @@
       function async_signup(response){
         // Add event listener to the submit button
         loginForm.addEventListener("submit", (event) => {
-          event.preventDefault(); 
+          event.preventDefault();
 
           const password = document.getElementById("password").value;
           const confirm_password = document.getElementById("confirm_password").value;
           const phoneNo = document.getElementById("phone").value;
           const admission_no = document.getElementById("admissonNo").value;
-
+          const fname = document.getElementById("FName").value;
+          const lname = document.getElementById("LName").value;
+          const dob = document.getElementById("DOB").value;
+          const grade = document.getElementById("Grade").value;
+          const age = document.getElementById("Age").value;
 
           const AdmissionRegex = /^\d{4}$/;
           if (!AdmissionRegex.test(admission_no)) {
@@ -97,6 +142,52 @@
           } else{
             errorMessage.style.display = "none";
           }
+
+          const FNameRegex = /^[A-Za-z]+$/;
+          if (!FNameRegex.test(fname)) {
+            errorMessage.textContent = "Invalid First Name";
+            errorMessage.style.display = "block";
+            return;
+          } else{
+            errorMessage.style.display = "none";
+          }
+
+          if (!FNameRegex.test(lname)) {
+            errorMessage.textContent = "Invalid Last Name";
+            errorMessage.style.display = "block";
+            return;
+          } else{
+            errorMessage.style.display = "none";
+          }
+
+          const DOBregex = /\d{1,2}-\d{1,2}-\d{4}/;
+          if (!DOBregex.test(dob)) {
+            errorMessage.textContent = "Invalid DOB";
+            errorMessage.style.display = "block";
+            return;
+          } else{
+            errorMessage.style.display = "none";
+          }
+
+          const GradeRegex = /\d{1,2}[A-Z]/;
+          if (!GradeRegex.test(grade)) {
+            errorMessage.textContent = "Invalid Grade";
+            errorMessage.style.display = "block";
+            return;
+          } else{
+            errorMessage.style.display = "none";
+          }
+
+          const AgeRegex = /^[0-4]\d|50$/;
+          if (!AgeRegex.test(age)) {
+            errorMessage.textContent = "Invalid Age";
+            errorMessage.style.display = "block";
+            return;
+          } else{
+            errorMessage.style.display = "none";
+          }
+
+          errorMessage.style.display = "none";
 
           if (password!== confirm_password) {
             errorMessage.textContent = "Passwords do not match";
@@ -132,10 +223,21 @@
             errorMessage.style.display = "none";
           }
 
-          errorMessage.style.display = "none";
-
           try{
+            const dataUSERDETAILS = JSON.stringify({
+              "FirstName": fname,
+              "LastName": lname,
+              "FullName": fname+" "+lname,
+              "Admission_No": admission_no,
+              "Password": password,
+              "PhoneNo": phoneNo,
+              "Grade": grade,
+              "DOB": dob,
+              "Age": age
+            });
             SignUp(admission_no, password, errorMessage, "index.html", true, phoneNo, window.recaptchaVerifier);
+            localStorage.setItem("UserDetails", dataUSERDETAILS);
+            AddData(dataUSERDETAILS, "Users", "UserDetails");
           } catch(error) {
             errorMessage.textContent = "Signup failed";
             errorMessage.style.display = "block";
@@ -145,6 +247,10 @@
           console.log("Password:", password);
           console.log("Phone Number:", phoneNo);
           console.log("Admission Number:", admission_no);
+          console.log("Full Name:", fname+" "+lname);
+          console.log("DOB:", dob);
+          console.log("Grade:", grade);
+          console.log("Age:", age);
         });
 
       };

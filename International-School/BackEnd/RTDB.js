@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-app.js";
-import { getDatabase, ref, set, once, onValue} from "https://www.gstatic.com/firebasejs/9.1.1/firebase-database.js";
+import { getDatabase, ref, set, get, onValue} from "https://www.gstatic.com/firebasejs/9.1.1/firebase-database.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAT08qUZxvau0g2qIL7wC3d14r9Q8vyuRc",
@@ -31,7 +31,7 @@ export function getDataOnUpdate(dbObj){
 function getData(dbObj){
     const reference = ref(db, 'DataBases/International_School_DB/'+dbObj);
 
-    once(reference, 'value').then((snapshot) => {
+    get(reference, 'value').then((snapshot) => {
         const values = snapshot.val();
         return values;
     }).then((data) => {
