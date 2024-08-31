@@ -16,9 +16,9 @@
       </div>
       <div class="user-dropdown">
         <div class="user-info">
-          <img src="./Assets/user.png" alt="user img" />
+          <img src="./Assets/Account.png" alt="user img"/>
           <div class="text">
-            <h4>?Username</h4>
+            <h4>?Name</h4>
           </div>
         </div>
 
@@ -37,6 +37,8 @@
         </div>
       </div>
     </header>
+
+    <h1 id="Main-Text"> DashBoard </h1>
 
     <div class="dashboard-content">
       <div class="leftSection">
@@ -93,11 +95,15 @@
           </div>
           <div class="data">
             <p class="EventText">?Event 0</p>
+            <p class="EventText">?Event 0</p>
             <hr />
+            <p class="ExamText">?Event 1</p>
             <p class="ExamText">?Event 1</p>
             <hr />
             <p class="HolidayText">?Event 2</p>
+            <p class="HolidayText">?Event 2</p>
             <hr />
+            <p class="HolidayText">?Event 3</p>
             <p class="HolidayText">?Event 3</p>
             <hr />
             <p class="HolidayText">?Event 4</p>
@@ -118,7 +124,7 @@
           console.log("User is not logged in");
           window.location.href = "./login.html";
         }
-      }
+      };
     </script>
     <script type="module">
       import { getData } from "../BackEnd/RTDB.js";
@@ -152,6 +158,9 @@
         var job = [];
         var events = [];
 
+        //Place Elements in desired arrays
+        elements.forEach((element) => {
+          const text = element.textContent.toLowerCase();
         //Place Elements in desired arrays
         elements.forEach((element) => {
           const text = element.textContent.toLowerCase();

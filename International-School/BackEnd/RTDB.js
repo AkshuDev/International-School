@@ -28,21 +28,19 @@ export function getDataOnUpdate(dbObj){
     });
 };
 
-function getData(dbObj){
+export function getData(dbObj){
     const reference = ref(db, 'DataBases/International_School_DB/'+dbObj);
 
-    get(reference, 'value').then((snapshot) => {
-        const values = snapshot.val();
-        return values;
-    }).then((data) => {
-        console.log(data);
+    return get(reference).then((snapshot) => {
+        console.log(snapshot.val());
+        return snapshot.val();
     }).catch((err) => {
         console.log(err);
     })
 };
 
 export function AddData(jsonData, dbObj, jsonData_Name){
-    const reference = ref(db, 'DataBases/International_School-DB/'+dbObj+'/'+jsonData_Name);
+    const reference = ref(db, 'DataBases/International_School_DB/'+dbObj+'/'+jsonData_Name);
 
     set(reference, jsonData).then((data)=>{
         return true, data;

@@ -61,7 +61,7 @@
           type="text"
           id="Age"
           aria-required="true"
-          placeholder="Enter your Age (max: 50)"
+          placeholder="Enter your Age (Max: 50)"
           autofocus
         />
         <label for="password">Password:</label>
@@ -83,7 +83,7 @@
           type="tel"
           id="phone"
           aria-required="true"
-          placeholder="Enter your Phone Number"
+          placeholder="Enter your Phone Number (+Country Code at starting)"
         />
         <p id="errorMessage" aria-live="assertive" aria-atomic="true" style="color: red; display: none;"></p>
         <div class="buttons">
@@ -214,7 +214,7 @@
             errorMessage.style.display = "none";
           }
 
-          const phoneRegex = /\+\d\d\d\d\d\d\d\d\d\d/;
+          const phoneRegex = /\+\d{2}\d{10}/;
           if (!phoneRegex.test(phoneNo)) {
             errorMessage.textContent = "Invalid Phone Number";
             errorMessage.style.display = "block";
@@ -224,24 +224,33 @@
           }
 
           try{
-            const dataUSERDETAILS = JSON.stringify({
+            const dataUSERDETAILS = {
               "FirstName": fname,
               "LastName": lname,
               "FullName": fname+" "+lname,
               "Admission_No": admission_no,
-              "Password": password,
-              "PhoneNo": phoneNo,
               "Grade": grade,
               "DOB": dob,
               "Age": age
-            });
-            SignUp(admission_no, password, errorMessage, "index.html", true, phoneNo, window.recaptchaVerifier);
-            localStorage.setItem("UserDetails", dataUSERDETAILS);
-            AddData(dataUSERDETAILS, "Users", "UserDetails");
+            };
+
+            const fullData = {
+              "General": dataUSERDETAILS,
+              "Medical": {
+                "BloodType": "Unknown"
+              },
+              "Contact": {
+                "PhoneNo": phoneNo
+              }
+            };
+            SignUp(admission_no, password, errorMessage, "", true, phoneNo, window.recaptchaVerifier);
+            localStorage.setItem("UserDetails", JSON.stringify(fullData));
+            AddData(fullData, "Students", admission_no);
           } catch(error) {
             errorMessage.textContent = "Signup failed";
             errorMessage.style.display = "block";
-            console.log(error)
+            console.log(error);
+            window.location.href = "./index.html";
           }
           console.log("Admission No:", admission_no);
           console.log("Password:", password);

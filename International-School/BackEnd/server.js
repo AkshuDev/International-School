@@ -17,10 +17,10 @@ initializeApp(firebaseConfig);
 const auth = getAuth();
 
 export function ResetPasswordViaPhone(email, phone, errorElement = "", addSufix=false){
-    
+
 }
 
-export function SignUp(username, password, errorElement="", transferPage="", addSufix=true, phone="", recaptcha_tok){
+export function SignUp(username, password, errorElement="", transferPage="", addSufix=true, phone="", recaptcha_tok="", callback=""){
     var email = username
     var addPhone = false;
 
@@ -59,6 +59,9 @@ export function SignUp(username, password, errorElement="", transferPage="", add
                         if (errorElement != ""){
                             errorElement.style.display = "none";
                         }
+                        if (callback != ""){
+                            callback();
+                        }
                         if (transferPage != ""){
                             window.location.href = transferPage;
                         }
@@ -81,6 +84,9 @@ export function SignUp(username, password, errorElement="", transferPage="", add
                 if (errorElement != ""){
                     errorElement.style.display = "none";
                 }
+                if (callback != ""){
+                    callback();
+                }
                 if (transferPage != ""){
                     window.location.href = transferPage;
                 }
@@ -97,7 +103,7 @@ export function SignUp(username, password, errorElement="", transferPage="", add
     }
 };
 
-export function Login(username, password, errorElement="", transferPage="", addSufix=true){
+export function Login(username, password, errorElement="", transferPage="", addSufix=true, callback=""){
     // Sign in
     var email = username
 
@@ -113,6 +119,9 @@ export function Login(username, password, errorElement="", transferPage="", addS
         if (errorElement != ""){
             errorElement.style.display = "none";
         }
+        if (callback != ""){
+            callback();
+        }
         if (transferPage != ""){
             window.location.href = transferPage;
         }
@@ -126,7 +135,7 @@ export function Login(username, password, errorElement="", transferPage="", addS
     });
 };
 
-export function ResetPassword(email, errorElement = "", addSufix=false){
+export function ResetPassword(email, errorElement = "", addSufix=false, callback=""){
     var email = email
 
     if (addSufix == true){
@@ -137,6 +146,9 @@ export function ResetPassword(email, errorElement = "", addSufix=false){
         console.log('Password reset email sent');
         if (errorElement != ""){
             errorElement.style.display = "none";
+        }
+        if (callback != ""){
+            callback();
         }
         return Promise.resolve("Success");
     }).catch((error) => {
