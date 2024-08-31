@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" type="text/css" href="./css/settings.css" />
+
+        <title>InterNational School</title>
+        <link rel="icon" href="Assets/logo.png" type="image/x-icon" />
+    </head>
+    <body>
+      <header>
+        <div class="welcome">
+          <a href="./index.html"
+            ><img src="./Assets/logo-highres.png" alt="School Logo"
+          /></a>
+          <h1>InterNational School</h1>
+        </div>
+        <div class="user-dropdown">
+          <div class="user-info">
+            <img src="./Assets/Account.png" alt="user img"/>
+            <div class="text">
+              <h4>?Name</h4>
+            </div>
+          </div>
+
+          <div class="dropdown-content">
+            <a href="./index.html">Home</a>
+            <a href="./dashboard.html">DashBoard</a>
+            <a href="./Messages.html">Message Center</a>
+            <a href="#">Settings</a>
+            <a href="./AR.html">Attendence Record</a>
+            <a href="./Payment.html">Fees</a>
+            <a href="./Performance.html">Report Card</a>
+            <a href="./SubjectTeachers">Subject Teachers</a>
+            <a href="./Facilities.html">Facilities</a>
+            <a href="./CSD.html">Change Student Details</a>
+            <hr />
+            <a onclick="LogOut(event)">Logout</a>
+          </div>
+        </div>
+      </header>
+
+      <h1 id="Main-Text"> Settings </h1>
+      <script>
+          function LogOut(event) {
+            event.preventDefault();
+
+            if (localStorage.getItem("user")) {
+              localStorage.removeItem("user");
+              localStorage.removeItem("UserDetails");
+              window.location.href = "./index.html";
+            } else {
+              console.log("User is not logged in");
+              window.location.href = "./login.html";
+            }
+          };
+      </script>
+      <script type="module">
+        function getElementsStartingWithQuestionMark() {
+          const elements = document.querySelectorAll("*:not(script):not(style)"); // Exclude scripts and styles
+          const matchingElements = [];
+
+          elements.forEach((element) => {
+            if (element.textContent.startsWith("?")) {
+              matchingElements.push(element);
+            }
+          });
+
+          return matchingElements;
+        }
+
+        async function DoJob(){
+          const elements = getElementsStartingWithQuestionMark();
+          var username = [];
+          var phone = [];
+          var Name = [];
+          var Admission_No = [];
+          var DOB = [];
+          var Grade = [];
+          var NonIdentified = [];
+          var job = [];
+
+          //Place Elements in desired arrays
+          elements.forEach((element) => {
+            const text = element.textContent.toLowerCase();
+
+            if (text.includes("username")) {
+              username.push(element);
+              Admission_No.push(element);
+            } else if (text.includes("phone")) {
+              phone.push(element);
+            } else if (text.includes("name")) {
+              Name.push(element);
+            } else if (text.includes("dob")) {
+              DOB.push(element);
+            } else if (text.includes("grade")) {
+              Grade.push(element);
+            } else if (text.includes("job")){
+              job.push(element);
+            } else {
+              NonIdentified.push(element);
+            }
+          });
+
+          //Get Data
+          const data = JSON.parse(localStorage.getItem("UserDetails"));
+
+          console.log(data);
+
+          //Process text
+          username.forEach((un) => {
+            var un_ = un.textContent;
+            if (un_.includes('|')){
+              un_ = un_.split("|");
+              un_ = data.General.Admission_No + un_[1];
+            } else {
+              un_ = data.General.Admission_No;
+            };
+            un.textContent = un_;
+          });
+
+          Admission_No.forEach((un) => {
+            var un_ = un.textContent;
+            if (un_.includes('|')){
+              un_ = un_.split("|");
+              un_ = data.General.Admission_No + un_[1];
+            } else {
+              un_ = data.General.Admission_No;
+            };
+            un.textContent = un_;
+          });
+
+          phone.forEach((un) => {
+            var un_ = un.textContent;
+            if (un_.includes('|')){
+              un_ = un_.split("|");
+              un_ = data.Contact.PhoneNo + un_[1];
+            } else {
+              un_ = data.Contact.PhoneNo;
+            };
+            un.textContent = un_;
+          });
+
+          Name.forEach((un) => {
+            var un_ = un.textContent;
+            if (un_.includes('|')){
+              un_ = un_.split("|");
+              un_ = data.General.FullName + un_[1];
+            } else {
+              un_ = data.General.FullName;
+            };
+            un.textContent = un_;
+          });
+
+          DOB.forEach((un) => {
+            var un_ = un.textContent;
+            if (un_.includes('|')){
+              un_ = un_.split("|");
+              un_ = data.General.DOB + un_[1];
+            } else {
+              un_ = data.General.DOB;
+            };
+            un.textContent = un_;
+          });
+
+          Grade.forEach((un) => {
+            var un_ = un.textContent;
+            if (un_.includes('|')){
+              un_ = un_.split("|");
+              un_ = data.General.Grade + un_[1];
+            } else {
+              un_ = data.General.Grade;
+            };
+            un.textContent = un_;
+          });
+
+          job.forEach((un) => {
+            var un_ = un.textContent;
+            if (un_.includes('|')){
+              const regex = /^\d{4}$/;
+              un_ = un_.split("|");
+              if (regex.test(data.General.Admission_No)){
+                un_ = "Student"+un_[1];
+              } else {
+                un_ = "Teacher"+un_[1];
+              };
+            } else {
+              if (regex.test(data.General.Admission_No)){
+                un_ = "Student";
+              } else {
+                un_ = "Teacher";
+              };
+            };
+          });
+        };
+        DoJob();
+      </script>
+    </body>
+</html>
