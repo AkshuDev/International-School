@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Dashboard</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+      }
+      .container {
+        width: 80%;
+        margin: 40px auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      .left-section {
+        width: 45%;
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .right-section {
+        width: 45%;
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .student-details {
+        margin-bottom: 20px;
+      }
+      .student-details table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      .student-details th,
+      .student-details td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+      }
+      .student-details th {
+        background-color: #f0f0f0;
+      }
+      .student-details img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin: 10px;
+      }
+      .upcoming-events {
+        margin-bottom: 20px;
+      }
+      .upcoming-events ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .upcoming-events li {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+      }
+      .upcoming-events li:last-child {
+        border-bottom: none;
+      }
+      .upcoming-events .holiday {
+        background-color: #ffff00;
+        color: #000;
+      }
+      .upcoming-events .event {
+        background-color: #0000ff;
+        color: #fff;
+      }
+      .upcoming-events .exam {
+        background-color: #ff0000;
+        color: #fff;
+      }
+      .message-center {
+        margin-bottom: 20px;
+      }
+      .message-center .compose-btn {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .message-center .compose-btn:hover {
+        background-color: #3e8e41;
+      }
+      .message-center table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      .message-center th,
+      .message-center td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+      }
+      .message-center th {
+        background-color: #f0f0f0;
+      }
+      .photo-albums {
+        margin-bottom: 20px;
+      }
+      .photo-albums img {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <header></header>
+    <div class="container">
+      <div class="left-section">
+        <div class="student-details">
+          <h2>Student's Information</h2>
+          <img src="user.jpg" alt="User Image" />
+          <table>
+            <tr>
+              <th>Name</th>
+              <td>John Doe</td>
+            </tr>
+            <tr>
+              <th>Class</th>
+              <td>10th</td>
+            </tr>
+            <tr>
+              <th>Admission Number</th>
+              <td>12345</td>
+            </tr>
+            <tr>
+              <th>Phone Number</th>
+              <td>1234567890</td>
+            </tr>
+          </table>
+        </div>
+        <div class="message-center">
+          <h2>Message Center</h2>
+          <button class="compose-btn">Compose Email</button>
+          <table>
+            <tr>
+              <th>From</th>
+              <th>To</th>
+              <th>CC</th>
+            </tr>
+
+            <th>Subject</th>
+            <tr>
+              <td>john.doe@example.com</td>
+              <td>jane.doe@example.com</td>
+              <td>bob.smith@example.com</td>
+              <td>Hello World!</td>
+            </tr>
+            <tr>
+              <td>jane.doe@example.com</td>
+              <td>john.doe@example.com</td>
+              <td></td>
+              <td>Re: Hello World!</td>
+            </tr>
+          </table>
+          <button class="mark-all-read-btn">Mark all as read</button>
+        </div>
+      </div>
+      <div class="right-section">
+        <div class="upcoming-events">
+          <h2>Upcoming Events</h2>
+          <ul>
+            <li class="holiday">Holiday: Independence Day - 15th August</li>
+            <li class="event">Event: Annual Day - 20th September</li>
+            <li class="exam">Exam: Half Yearly Exam - 1st October</li>
+          </ul>
+        </div>
+        <div class="photo-albums">
+          <h2>Photo Albums</h2>
+          <div class="slideshow-container">
+            <div class="mySlides fade">
+              <img src="img1.jpg" alt="Image 1" />
+            </div>
+            <div class="mySlides fade">
+              <img src="img2.jpg" alt="Image 2" />
+            </div>
+            <div class="mySlides fade">
+              <img src="img3.jpg" alt="Image 3" />
+            </div>
+            <div class="mySlides fade">
+              <img src="img4.jpg" alt="Image 4" />
+            </div>
+            <div class="mySlides fade">
+              <img src="img5.jpg" alt="Image 5" />
+            </div>
+          </div>
+          <button class="prev" onclick="plusSlides(-1)">Previous</button>
+          <button class="next" onclick="plusSlides(1)">Next</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      var slideIndex = 1;
+      showSlides(slideIndex);
+
+      function plusSlides(n) {
+        showSlides((slideIndex += n));
+      }
+
+      function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        if (n > slides.length) {
+          slideIndex = 1;
+        }
+        if (n < 1) {
+          slideIndex = slides.length;
+        }
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        slides[slideIndex - 1].style.display = "block";
+      }
+    </script>
+    <footer></footer>
+  </body>
+</html>
