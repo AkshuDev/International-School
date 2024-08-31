@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InterNational School - School Login</title>
+    <link rel="icon" href="./Assets/logo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./login.css" />
+  </head>
+  <body>
+    <div class="school-logo" style="display: block; align-items: center; text-align: align; justify-content: flex-start;">
+      <a href="./index.html">
+        <img src="./Assets/logo-highres.png" alt="School Logo" />
+      </a>
+    </div>
+    <div class="container login-card">
+      <form id="Login">
+        <h2>Student Login</h2>
+        <label for="username">Username:</label>
+        <input
+          type="text"
+          id="username"
+          aria-required="true"
+          placeholder="Username"
+          autofocus
+        />
+        <label for="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          aria-required="true"
+          placeholder="Password"
+        />
+        <p aria-live="assertive" aria-atomic="true" id="errorMessage">Invalid Username or Password. <a href="./forgotUsernamePassword.html">Forgot?</a></p>
+        <p id="errorMessage" style="display: none; color: red;"></p>
+        <div class="buttons">
+          <button type="submit">Login</button>
+        </div>
+        <a href="./signup.html" id="signUpLink"><p>SignUp</p></a>
+      </form>
+    </div>
+    <script type="module" src="./Login.js" ></script>
+  </body>
+</html>
