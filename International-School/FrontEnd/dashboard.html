@@ -113,7 +113,7 @@
       </div>
     </div>
     <script>
-      function checkLogin(event) {
+      function LogOut(event) {
         event.preventDefault();
 
         if (localStorage.getItem("user")) {
@@ -127,7 +127,7 @@
       };
     </script>
     <script type="module">
-      import { getData } from "../BackEnd/RTDB.js";
+      import {getData} from "../BackEnd/RTDB.js"
 
       function getElementsStartingWithQuestionMark() {
         const elements = document.querySelectorAll("*:not(script):not(style)"); // Exclude scripts and styles
@@ -143,10 +143,10 @@
       }
 
       function sleep(ms) {
-        return new Promise((resolve) => setTimeout(resolve, ms));
+        return new Promise(resolve => setTimeout(resolve, ms));
       }
 
-      async function DoJob() {
+      async function DoJob(){
         const elements = getElementsStartingWithQuestionMark();
         var username = [];
         var phone = [];
@@ -158,9 +158,6 @@
         var job = [];
         var events = [];
 
-        //Place Elements in desired arrays
-        elements.forEach((element) => {
-          const text = element.textContent.toLowerCase();
         //Place Elements in desired arrays
         elements.forEach((element) => {
           const text = element.textContent.toLowerCase();
@@ -176,9 +173,9 @@
             DOB.push(element);
           } else if (text.includes("grade")) {
             Grade.push(element);
-          } else if (text.includes("job")) {
+          } else if (text.includes("job")){
             job.push(element);
-          } else if (text.includes("event")) {
+          } else if (text.includes("event")){
             events.push(element);
           } else {
             NonIdentified.push(element);
@@ -193,87 +190,87 @@
         //Process text
         username.forEach((un) => {
           var un_ = un.textContent;
-          if (un_.includes("|")) {
+          if (un_.includes('|')){
             un_ = un_.split("|");
             un_ = data.General.Admission_No + un_[1];
           } else {
             un_ = data.General.Admission_No;
-          }
+          };
           un.textContent = un_;
         });
 
         Admission_No.forEach((un) => {
           var un_ = un.textContent;
-          if (un_.includes("|")) {
+          if (un_.includes('|')){
             un_ = un_.split("|");
             un_ = data.General.Admission_No + un_[1];
           } else {
             un_ = data.General.Admission_No;
-          }
+          };
           un.textContent = un_;
         });
 
         phone.forEach((un) => {
           var un_ = un.textContent;
-          if (un_.includes("|")) {
+          if (un_.includes('|')){
             un_ = un_.split("|");
             un_ = data.Contact.PhoneNo + un_[1];
           } else {
             un_ = data.Contact.PhoneNo;
-          }
+          };
           un.textContent = un_;
         });
 
         Name.forEach((un) => {
           var un_ = un.textContent;
-          if (un_.includes("|")) {
+          if (un_.includes('|')){
             un_ = un_.split("|");
             un_ = data.General.FullName + un_[1];
           } else {
             un_ = data.General.FullName;
-          }
+          };
           un.textContent = un_;
         });
 
         DOB.forEach((un) => {
           var un_ = un.textContent;
-          if (un_.includes("|")) {
+          if (un_.includes('|')){
             un_ = un_.split("|");
             un_ = data.General.DOB + un_[1];
           } else {
             un_ = data.General.DOB;
-          }
+          };
           un.textContent = un_;
         });
 
         Grade.forEach((un) => {
           var un_ = un.textContent;
-          if (un_.includes("|")) {
+          if (un_.includes('|')){
             un_ = un_.split("|");
             un_ = data.General.Grade + un_[1];
           } else {
             un_ = data.General.Grade;
-          }
+          };
           un.textContent = un_;
         });
 
         job.forEach((un) => {
           var un_ = un.textContent;
-          if (un_.includes("|")) {
+          if (un_.includes('|')){
             const regex = /^\d{4}$/;
             un_ = un_.split("|");
-            if (regex.test(data.General.Admission_No)) {
-              un_ = "Student" + un_[1];
+            if (regex.test(data.General.Admission_No)){
+              un_ = "Student"+un_[1];
             } else {
-              un_ = "Teacher" + un_[1];
-            }
+              un_ = "Teacher"+un_[1];
+            };
           } else {
-            if (regex.test(data.General.Admission_No)) {
+            if (regex.test(data.General.Admission_No)){
               un_ = "Student";
             } else {
               un_ = "Teacher";
-            }
-          }
+            };
+          };
 
           un.textContent = un_;
         });
@@ -292,44 +289,31 @@
         events.forEach((un) => {
           var un_ = un.textContent;
           var id = "";
-          if (un_.includes(" ")) {
+          if (un_.includes(" ")){
             un_ = un_.split(" ");
             id = un_[1];
-          }
+          };
           const data = new_data[id];
           var Date_ = "";
 
-          if (data.Date.includes("*")) {
+          if (data.Date.includes("*")){
             Date_ = data.Date.split("*");
-            if (Date_[1].toLowerCase() == "event") {
+            if (Date_[1].toLowerCase() == "event"){
               un.style.borderColor = "green";
-            } else if (Date_[1].toLowerCase() == "holiday") {
+            } else if (Date_[1].toLowerCase() == "holiday"){
               un.style.borderColor = "blue";
-            } else if (Date_[1].toLowerCase() == "exam") {
+            } else if (Date_[1].toLowerCase() == "exam"){
               un.style.borderColor = "red";
             } else {
               un.style.borderColor = "black";
-            }
-          }
+            };
+          };
 
           un_ = data.Name + " (" + Date_[0] + ")";
           un.textContent = un_;
         });
-      }
+      };
       DoJob();
     </script>
-    <!-- <script type="module">
-      function LogOut(event) {
-        event.preventDefault();
-
-        if (localStorage.getItem("user")) {
-          localStorage.removeItem("user");
-          localStorage.removeItem("UserDetails");
-          window.location.href = "./index.html";
-        } else {
-          console.log("User is not logged in");
-          window.location.href = "./login.html";
-        }
-      } -->
   </body>
 </html>
