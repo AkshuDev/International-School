@@ -1,0 +1,81 @@
+#about-page {
+  margin-left: 3em;
+  margin-right: 3em;
+}
+
+
+
+#about-page h2 {
+  font-size: 2rem;
+  text-align: center;
+  border-bottom: 1px solid teal;
+  padding: 1em;
+}
+
+.mission-vision-plan {
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-evenly;
+  min-height: 50vh;
+  max-height: fit-content;
+  margin-bottom: 1em;
+}
+
+.mission {
+  text-align: start ;
+  width: 33.33%;
+  border: 1px solid #ddd;
+  min-height: min-content;
+  margin-right: 2em;
+  margin-left: 2em;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.5s ease-in-out;
+  cursor: default;
+}
+
+.mission:hover {
+  transform: scale(1.02);
+}
+
+.mission-vision-plan img {
+  width: 100%;
+  object-fit: contain;
+  height: 10em;
+}
+
+.text {
+  line-height: 2em;
+  padding: 1em;
+}
+
+.vision {
+  width: 33.33%;
+  border: 1px solid #ddd;
+  text-align: start;
+  margin-right: 2em;
+  transition: transform 0.5s ease-in-out;
+  cursor: default;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.vision:hover {
+  transform: scale(1.02);
+}
+
+.vision .title {
+  display: block;
+}
+
+.plan {
+  width: 33.33%;
+  border: 1px solid #ddd;
+  text-align: start;
+  margin-right: 2em;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.5s ease-in-out;
+  cursor: default;
+}
+
+.plan:hover {
+  transform: scale(1.02);
+}

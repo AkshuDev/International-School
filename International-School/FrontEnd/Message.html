@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="./css/dashboard.css" />
+    <link rel="stylesheet" type="text/css" href="./css/Message.css" />
+    <link rel="stylesheet" type="text/css" href="./css/MessagesCenter.css" />
+
+    <title>InterNational School</title>
+    <link rel="icon" href="Assets/logo.png" type="image/x-icon" />
+  </head>
+  <body>
+    <header>
+      <div class="welcome">
+        <a href="./index.html"
+          ><img src="./Assets/logo-highres.png" alt="School Logo"
+        /></a>
+        <h1>InterNational School</h1>
+      </div>
+      <div class="user-dropdown">
+        <div class="user-info">
+          <a href="./dashboard.html"><img src="./Assets/Account.png" alt="user img"/></a>
+          <div class="text">
+            <h4>Name?</h4>
+          </div>
+        </div>
+
+        <div class="dropdown-content">
+          <a href="./index.html?scroll=#welcome-page">Home</a>
+          <hr />
+          <a href="./dashboard.html">DashBoard</a>
+          <a href="./MessageCenter.html">Message Center</a>
+          <a href="./SubjectTeachers.html">Subject Teachers</a>
+          <hr />
+          <a href="./CSD.html">Change Student Details</a>
+          <hr />
+          <a href="./index.html?scroll=#facilities">Facilities</a>
+          <a href="./index.html?scroll=#about-page">About Us</a>
+          <a href="./index.html?scroll=#contactUs">Contact Us</a>
+          <hr />
+          <a onclick="LogOut(event)">Logout</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="gmail-message-page">
+      <div class="header">
+        <div class="subject">Subject: |Subject?</div>
+        <div class="actions">
+          <button class="reply-btn">Reply</button>
+        </div>
+      </div>
+      <div class="message-header">
+        <div class="from">From: |From?</div>
+        <div class="to">To: |To?</div>
+        <div class="date">Date: |Date?</div>
+      </div>
+      <div class="message-body">
+        <p>Message?</p>
+      </div>
+      <div class="thread">
+        <h4>Thread:</h4>
+        <ul>
+          <li>
+            <div class="thread-message">
+              <div class="thread-message-header">
+                <div class="from">From: |From?</div>
+                <div class="date">Date: |Date?</div>
+              </div>
+              <div class="thread-message-body">
+                <p>Message?</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="compose-popup">
+      <div class="compose-header">
+        <h4>New Message</h4>
+        <button class="close-btn">&times;</button>
+      </div>
+      <div class="compose-body">
+        <form id="CForm">
+          <label for="to">To:</label>
+          <input type="text" id="to" placeholder="Enter recipient's name">
+          <label for="to">cc:</label>
+          <input type="text" id="cc" placeholder="Enter cc's name">
+          <label for="subject">Subject:</label>
+          <input type="text" id="subject" placeholder="Enter subject">
+          <textarea id="message" placeholder="Enter message"></textarea>
+          <button class="send-btn">Send</button>
+          <button class="discard-btn">Discard</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function LogOut(event) {
+        event.preventDefault();
+
+        if (localStorage.getItem("user")) {
+          localStorage.removeItem("user");
+          localStorage.removeItem("UserDetails");
+          window.location.href = "./index.html";
+        } else {
+          console.log("User is not logged in");
+          window.location.href = "./login.html";
+        }
+      };
+    </script>
+    <script type="module">
+        import {getData, AddData, UpdateData} from "../BackEnd/RTDB.js";
+        import {getCurrentDate} from "../BackEnd/server.js";
+
+        let data;
+        let ldata;
+        let dbdata;
+
+        function getElementsHavingQuestionMark() {
+            const elements = document.querySelectorAll("*:not(script):not(style)"); // Exclude scripts and styles
+            const matchingElements = [];
+
+            elements.forEach((element) => {
+              if (element.textContent.endsWith("?")) {
+                matchingElements.push(element);
+              }
+            });
+
+            return matchingElements;
+          }
+
+          function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+          }
+
+          async function DoJob(){
+            const elements = getElementsHavingQuestionMark();
+            var Name = [];
+            var Subject = [];
+            var To = [];
+            var From = [];
+            var Date = [];
+            var Message = [];
+            var NonIdentified = [];
+
+            if (localStorage.getItem("UserDetails")){
+              ldata = JSON.parse(localStorage.getItem("UserDetails"));
+            };
+
+            //Place Elements in desired arrays
+            elements.forEach((element) => {
+              const text = element.textContent.toLowerCase();
+
+
+              if (text.includes("name")) {
+                Name.push(element);
+              } else if (text.includes("subject")) {
+                Subject.push(element);
+              } else if (text.includes("to")) {
+                To.push(element);
+              } else if (text.includes("from")) {
+                From.push(element);
+              } else if (text.includes("date")) {
+                Date.push(element);
+              } else if (text.includes("message")) {
+                Message.push(element);
+              } else {
+                NonIdentified.push(element);
+              }
+            });
+
+            console.log(Name);
+
+            Name.forEach((un) => {
+              var un_ = un.textContent;
+              if (un_.includes('|')){
+                un_ = un_.split("|");
+                un_ = ldata.General.FullName + un_[1];
+              } else {
+                un_ = ldata.General.FullName;
+              };
+              un.textContent = un_;
+            });
+
+            if (window.location.href.includes("?")){
+              const MsgName = window.location.href.split("?")[1].replace("%22", "").replace("%22", "");
+
+              console.log(MsgName);
+              console.log(ldata.General.Admission_No);
+
+              await sleep(500);
+
+              console.log("Students/"+ldata.General.Admission_No+"/Messages/"+MsgName);
+
+              getData("").then((data__) => {
+                dbdata = data__;
+              });
+
+              await sleep(2000);
+
+              data = dbdata.Students[ldata.General.Admission_No].Messages[MsgName];
+
+              console.log(data);
+
+              Subject.forEach((un) => {
+                var un_ = un.textContent;
+                if (un_.includes('|')){
+                  un_ = un_.split("|");
+                  un_ = un_[0] + data.Subject;
+                } else {
+                  un_ = data.Subject;
+                };
+                un.textContent = un_;
+              });
+              To.forEach((un) => {
+                var un_ = un.textContent;
+                if (un_.includes('|')){
+                  un_ = un_.split("|");
+                  un_ = un_[0] + data.To;
+                } else {
+                  un_ = data.To;
+                };
+                un.textContent = un_;
+              });
+              From.forEach((un) => {
+                var un_ = un.textContent;
+                if (un_.includes('|')){
+                  un_ = un_.split("|");
+                  un_ = un_[0] + data.From;
+                } else {
+                  un_ = data.From;
+                };
+                un.textContent = un_;
+              });
+              Date.forEach((un) => {
+                var un_ = un.textContent;
+                if (un_.includes('|')){
+                  un_ = un_.split("|");
+                  un_ = un_[0] + data.Date;
+                } else {
+                  un_ = data.Date;
+                };
+                un.textContent = un_;
+              });
+              Message.forEach((un) => {
+                var un_ = un.textContent;
+                if (un_.includes('|')){
+                  un_ = un_.split("|");
+                  un_ = un_[0] + data.Message;
+                } else {
+                  un_ = data.Message;
+                };
+                un.textContent = un_;
+              });
+
+              UpdateData({"Read": "true"}, "Students/"+ldata.General.Admission_No+"/Messages/"+data.Subject);
+            };
+        };
+
+        DoJob();
+
+        async function Compose(){
+          const to_val = document.getElementById('to').value;
+          const from = ldata.General.FullName;
+          const Date = getCurrentDate();
+          var cc = "";
+          if (document.getElementById('cc').value == ""){
+            cc = "None";
+          } else {
+            cc = document.getElementById('cc').value;
+          };
+          const read = "true";
+          const message = document.getElementById('message').value;
+          const subject = document.getElementById('subject').value;
+          const full_data = {
+            "CC": cc,
+            "Date": Date,
+            "From": from,
+            "Message": message,
+            "Read": read,
+            "Subject": subject,
+            "To": to_val
+          }
+          const Teacher_full_data = {
+            "CC": cc,
+            "Date": Date,
+            "From": from,
+            "Message": message,
+            "Read": "false",
+            "Subject": subject,
+            "To": to_val
+          }
+          AddData(full_data, "Students/"+ldata.General.Admission_No+"/Messages", subject);
+          await sleep(1000);
+          AddData(Teacher_full_data, "Teachers/"+to_val+"/Messages", subject);
+        }
+
+        document.querySelector('.reply-btn').addEventListener('click', function() {
+          event.preventDefault();
+          document.querySelector('.compose-popup').style.display = 'block';
+          document.getElementById('to').value = data.From;
+        });
+
+        document.querySelector('.send-btn').addEventListener('click', function() {
+          event.preventDefault();
+          console.log(document.getElementById("subject").value);
+          Compose();
+          document.querySelector('.compose-popup').style.display = 'none';
+        })
+
+        // Add event listener to the close button
+        document.querySelector('.close-btn').addEventListener('click', function() {
+          event.preventDefault();
+          document.querySelector('.compose-popup').style.display = 'none';
+        });
+
+        // Add event listener to the discard button
+        document.querySelector('.discard-btn').addEventListener('click', function() {
+          event.preventDefault();
+          console.log('Discard button clicked');
+          document.getElementById('to').value = "";
+          document.getElementById('cc').value = "";
+          document.getElementById('subject').value = "";
+          document.getElementById('message').value = "";
+          document.querySelector('.compose-popup').style.display = 'none';
+        });
+    </script>
+  </body>
+</html>

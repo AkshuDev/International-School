@@ -1,0 +1,10 @@
+Photo by Pixabay:
+        https://www.pexels.com/photo/red-building-with-clock-tower-207692/ 
+        Photo by Ann H:
+        https://www.pexels.com/photo/wooden-letters-on-a-cardboard-11022648/
+        <a href="https://www.flaticon.com/free-icons/user" title="user icons"
+          >User icons created by Freepik - Flaticon</a
+        ><a href="https://www.flaticon.com/free-icons/school-bus" title="school bus icons">School bus icons created by Zhaficon - Flaticon</a><a href="https://www.flaticon.com/free-icons/football-helmet" title="football helmet icons">Football helmet icons created by Candy Design - Flaticon</a>
+     <a href="https://www.flaticon.com/free-icons/books" title="books icons">Books icons created by popo2021 - Flaticon</a>
+    <a href="https://www.flaticon.com/free-icons/chemistry" title="chemistry icons">Chemistry icons created by Freepik - Flaticon</a>
+  <a href="https://www.flaticon.com/free-icons/computer" title="computer icons">Computer icons created by Smashicons - Flaticon</a><a href="https://www.flaticon.com/free-icons/teacher" title="teacher icons">Teacher icons created by Flat Icons - Flaticon</a>

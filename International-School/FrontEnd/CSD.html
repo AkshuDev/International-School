@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InterNational School</title>
+    <link rel="icon" href="Assets/logo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/login.css" />
+</head>
+<body>
+    <div class="school-logo" style="display: block; align-items: center; text-align: align; justify-content: flex-start;">
+        <a href="#" onclick="Back(event)">
+          <img src="./Assets/logo-highres.png" alt="School Logo" />
+        </a>
+    </div>
+    <div class="container">
+        <form id="Login" style="align-items: center; justify-items:center;">
+            <h2>Change Details</h2>
+            <label for="FName">First-Name:</label>
+            <input
+              type="text"
+              id="FName"
+              aria-required="true"
+              placeholder="Enter your First Name"
+              autofocus
+            />
+            <label for="LName">Last-Name:</label>
+            <input
+              type="text"
+              id="LName"
+              aria-required="true"
+              placeholder="Enter your Last Name"
+              autofocus
+            />
+            <label for="Grade">Grade:</label>
+            <input
+              type="text"
+              id="Grade"
+              aria-required="true"
+              placeholder="Enter your Grade with Section (GradeSection(Caps))"
+              autofocus
+            />
+            <label for="password">Password:</label>
+            <input
+              type="password"
+              id="password"
+              aria-required="true"
+              placeholder="Set your Password"
+            />
+            <label for="password">Confirm Password:</label>
+            <input
+              type="password"
+              id="confirm_password"
+              aria-required="true"
+              placeholder="Confirm your password"
+            />
+            <label for="phone">Phone Number:</label>
+            <input
+              type="tel"
+              id="phone"
+              aria-required="true"
+              placeholder="Enter your Phone Number (+Country Code at start)"
+            />
+            <p id="errorMessage" aria-live="assertive" aria-atomic="true" style="color: red; display: none;"></p>
+            <div class="buttons" style="text-align: center; align-items:center;justify-items:center;">
+              <button type="submit" style="text-align: center;">Change</button>
+            </div>
+          </form>
+    </div>
+    <script>
+        console.log(window.location.href.split("?")[1]);
+        function Back(event){
+            if (window.location.href.includes("?")){
+                window.location.href = "./"+window.location.href.split("?")[1]+".html";
+            } else {
+                window.location.href = "./index.html";
+            }
+        }
+    </script>
+    <script type="module">
+        import {UpdateData} from "../BackEnd/RTDB.js";
+        import {updatePassword_} from "../Backend/server.js";
+        async function sleep(ms) {
+            return new Promise(resolve => {
+              setTimeout(resolve, ms);
+            });
+        }
+
+        async function changeDetails(fname, lname, grade, password, phone){
+            var data_full_up = {};
+            var contact = {};
+            var cnt = false;
+            var name = false;
+            if (fname != "") {
+                data_full_up["FirstName"] = fname;
+                name = true;
+            }
+            if (lname != "") {
+                data_full_up["LastName"] = lname;
+                name = true;
+            }
+            if (name == true){
+                data_full_up["FullName"] = fname+" "+lname;
+            }
+            if (grade != "") {
+                data_full_up["Grade"] = grade;
+            }
+            if (password != "") {
+                updatePassword_(JSON.parse(localStorage.getItem("UserDetails")).General.Admission_No, password, true);
+            }
+            if (phone != "") {
+                cnt = true;
+                contact["PhoneNo"] = phone;
+            }
+            UpdateData(data_full_up, "Students/"+JSON.parse(localStorage.getItem("UserDetails")).General.Admission_No+"/General");
+            await sleep(2000);
+            if (cnt == true){
+                UpdateData(contact, "Student/"+JSON.parse(localStorage.getItem("UserDetails")).General.Admission_No+"/Contact");
+            }
+            await sleep(2000);
+            localStorage.removeItem("UserDetails");
+            localStorage.removeItem("user");
+            console.log("Updated");
+            await sleep(1000);
+            window.location.href = "./login.html";
+        }
+
+        document.getElementById("Login").addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const password = document.getElementById("password").value;
+            const confirm_password = document.getElementById("confirm_password").value;
+            const phoneNo = document.getElementById("phone").value;
+            const fname = document.getElementById("FName").value;
+            const lname = document.getElementById("LName").value;
+            const grade = document.getElementById("Grade").value;
+
+            const FNameRegex = /^[A-Za-z]+$/;
+            if (!FNameRegex.test(fname) && fname != "") {
+              errorMessage.textContent = "Invalid First Name";
+              errorMessage.style.display = "block";
+              return;
+            } else{
+              errorMessage.style.display = "none";
+            }
+
+            if (!FNameRegex.test(lname) && lname != "") {
+              errorMessage.textContent = "Invalid Last Name";
+              errorMessage.style.display = "block";
+              return;
+            } else{
+              errorMessage.style.display = "none";
+            }
+
+            const GradeRegex = /\d{1,2}[A-Z]/;
+            if (!GradeRegex.test(grade) && grade != "") {
+              errorMessage.textContent = "Invalid Grade";
+              errorMessage.style.display = "block";
+              return;
+            } else{
+              errorMessage.style.display = "none";
+            }
+
+            errorMessage.style.display = "none";
+
+            if (password!== confirm_password && password != "") {
+              errorMessage.textContent = "Passwords do not match";
+              errorMessage.style.display = "block";
+              return;
+            } else{
+              errorMessage.style.display = "none";
+            }
+
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            if (!passwordRegex.test(password) && password != "") {
+              errorMessage.textContent = "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character";
+              errorMessage.style.display = "block";
+              return;
+            } else{
+              errorMessage.style.display = "none";
+            }
+
+            const phoneRegex = /\+\d{2}\d{10}/;
+            if (!phoneRegex.test(phoneNo) && phoneNo != "") {
+              errorMessage.textContent = "Invalid Phone Number";
+              errorMessage.style.display = "block";
+              return;
+            } else{
+              errorMessage.style.display = "none";
+            }
+
+            changeDetails(fname, lname, grade, password, phoneNo);
+        });
+    </script>
+</body>
+</html>

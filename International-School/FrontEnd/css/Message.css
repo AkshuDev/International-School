@@ -1,0 +1,128 @@
+.gmail-message-page {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #fff;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .subject {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+  }
+
+  .reply-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .reply-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+  }
+
+  .message-header {
+    background-color: #fff;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .from, .to, .date {
+    margin-bottom: 10px;
+    color: #666;
+  }
+
+  .message-body {
+    padding: 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .attachments {
+    padding: 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .attachments h4 {
+    margin-top: 0;
+    color: #333;
+  }
+
+  .attachments ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .attachments li {
+    margin-bottom: 10px;
+  }
+
+  .attachment-link {
+    text-decoration: none;
+    color: #007bff;
+  }
+
+  .attachment-link:hover {
+    text-decoration: underline;
+  }
+
+  .thread {
+    padding: 20px;
+    background-color: #fff;
+  }
+
+  .thread h4 {
+    margin-top: 0;
+    color: #333;
+  }
+
+  .thread ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .thread li {
+    margin-bottom: 20px;
+  }
+
+  .thread-message {
+    background-color: #f7f7f7;
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+
+  .thread-message-header {
+    margin-bottom: 10px;
+  }
+
+  .thread-message-body {
+    padding: 10px;
+  }
+
+  .thread-message-body p {
+    margin-bottom: 10px;
+  }

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="./css/dashboard.css" />
+    <link rel="stylesheet" type="text/css" href="./css/MessagesCenter.css" />
+
+    <title>InterNational School</title>
+    <link rel="icon" href="Assets/logo.png" type="image/x-icon" />
+  </head>
+  <body>
+    <header>
+      <div class="welcome">
+        <a href="./index.html"
+          ><img src="./Assets/logo-highres.png" alt="School Logo"
+        /></a>
+        <h1>InterNational School</h1>
+      </div>
+      <div class="user-dropdown">
+        <div class="user-info">
+          <img src="./Assets/Account.png" alt="user img"/>
+          <div class="text">
+            <h4>?Name</h4>
+          </div>
+        </div>
+
+        <div class="dropdown-content">
+          <a href="./index.html?scroll=#welcome-page">Home</a>
+          <hr />
+          <a href="./dashboard.html">DashBoard</a>
+          <a href="./MessageCenter.html">Message Center</a>
+          <hr />
+          <a href="./CSD.html?MessageCenter">Change Student Details</a>
+          <hr />
+          <a href="./index.html?scroll=#facilities">Facilities</a>
+          <a href="./index.html?scroll=#about-page">About Us</a>
+          <a href="./index.html?scroll=#contactUs">Contact Us</a>
+          <hr />
+          <a onclick="LogOut(event)">Logout</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="gmail-body">
+      <div class="sidebar">
+        <div class="sidebar-header">
+          <h4>Mail</h4>
+        </div>
+        <ul class="sidebar-menu">
+          <li><a href="#" class="active">Inbox</a></li>
+          <button class="compose-btn">Compose</button>
+
+<div class="compose-popup">
+  <div class="compose-header">
+    <h4>New Message</h4>
+    <button class="close-btn">&times;</button>
+  </div>
+  <div class="compose-body">
+    <form id="CForm">
+      <label for="to">To:</label>
+      <input type="text" id="to" placeholder="Enter recipient's name">
+      <label for="to">cc:</label>
+      <input type="text" id="cc" placeholder="Enter cc's name">
+      <label for="subject">Subject:</label>
+      <input type="text" id="subject" placeholder="Enter subject">
+      <textarea id="message" placeholder="Enter message"></textarea>
+      <button class="send-btn">Send</button>
+      <button class="discard-btn">Discard</button>
+    </form>
+  </div>
+</div>
+        </ul>
+      </div>
+      <div class="main-content">
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <input type="checkbox" id="select-all" />
+            <label for="select-all"></label>
+          </div>
+        </div>
+        <div class="email-list">
+          <table id="Messages">
+            <tr>
+              <th></th>
+              <th>From</th>
+              <th>Subject</th>
+              <th>Date</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script type="module">
+      import {AddData} from "../BackEnd/RTDB.js";
+      import {getCurrentDate} from "../BackEnd/server.js";
+
+      function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      };
+
+      let ldata
+
+      ldata = JSON.parse(localStorage.getItem("UserDetails"));
+
+      async function Compose(){
+        const to_val = document.getElementById('to').value;
+        const from = ldata.General.FullName;
+        const Date = getCurrentDate();
+        var cc = "";
+        if (document.getElementById('cc').value == ""){
+          cc = "None";
+        } else {
+          cc = document.getElementById('cc').value;
+        };
+        const read = "true";
+        const message = document.getElementById('message').value;
+        const subject = document.getElementById('subject').value;
+        const full_data = {
+          "CC": cc,
+          "Date": Date,
+          "From": from,
+          "Message": message,
+          "Read": read,
+          "Subject": subject,
+          "To": to_val
+        }
+        const Teacher_full_data = {
+          "CC": cc,
+          "Date": Date,
+          "From": from,
+          "Message": message,
+          "Read": "false",
+          "Subject": subject,
+          "To": to_val
+        }
+        AddData(full_data, "Students/"+ldata.General.Admission_No+"/Messages", subject);
+        await sleep(1000);
+        AddData(Teacher_full_data, "Teachers/"+to_val+"/Messages", subject);
+      }
+
+      // Add event listener to the compose button
+      document.querySelector('.compose-btn').addEventListener('click', function() {
+        event.preventDefault();
+        document.querySelector('.compose-popup').style.display = 'block';
+      });
+
+      // Add event listener to the close button
+      document.querySelector('.close-btn').addEventListener('click', function() {
+        event.preventDefault();
+        document.querySelector('.compose-popup').style.display = 'none';
+      });
+
+      // Add event listener to the discard button
+      document.querySelector('.discard-btn').addEventListener('click', function() {
+        event.preventDefault();
+        console.log('Discard button clicked');
+        document.getElementById('to').value = "";
+        document.getElementById('cc').value = "";
+        document.getElementById('subject').value = "";
+        document.getElementById('message').value = "";
+        document.querySelector('.compose-popup').style.display = 'none';
+      });
+
+      document.querySelector('.send-btn').addEventListener('click', function() {
+        event.preventDefault();
+        Compose();
+        document.querySelector('.compose-popup').style.display = 'none';
+      })
+    </script>
+    <script>
+      function LogOut(event) {
+        event.preventDefault();
+
+        if (localStorage.getItem("user")) {
+          localStorage.removeItem("user");
+          localStorage.removeItem("UserDetails");
+          window.location.href = "./index.html";
+        } else {
+          console.log("User is not logged in");
+          window.location.href = "./login.html";
+        }
+      };
+    </script>
+    <script type="module">
+      import { getData } from "../BackEnd/RTDB.js";
+
+      function sleep(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+      }
+
+      let data_ = "";
+
+      async function messages() {
+        getData(
+          "Students/" +
+            JSON.parse(localStorage.getItem("UserDetails")).General
+              .Admission_No +
+            "/Messages"
+        ).then((data) => {
+          data_ = data;
+          data_ = Array.from(Object.values(data_));
+        });
+
+        await sleep(1500);
+
+        console.log(data_);
+
+        if (data_ == []) {
+        } else {
+          data_.forEach((element) => {
+            var el = document.createElement("tr");
+            var elel = document.createElement("th");
+            var elele = document.createElement("a");
+            var elelel = document.createElement("th");
+            var elelele = document.createElement("th");
+            var elelelel = document.createElement("th");
+
+            document.getElementById("Messages").appendChild(el);
+            el.appendChild(elelelel);
+            el.appendChild(elelel);
+            el.appendChild(elel);
+            el.appendChild(elelele);
+
+            elelel.textContent = element.From;
+            elelele.textContent = element.Date;
+            elele.style.textDecoration = "none";
+            elele.style.color = "grey";
+            elel.appendChild(elele);
+            elele.href = "./Message.html?" + JSON.stringify(element.Subject);
+            elele.textContent = element.Subject;
+
+            if (element.Read == "true"){
+              elele.style.color = "black";
+            }
+          });
+        }
+      }
+
+      messages();
+    </script>
+    <script type="module">
+        function getElementsStartingWithQuestionMark() {
+            const elements = document.querySelectorAll("*:not(script):not(style)"); // Exclude scripts and styles
+            const matchingElements = [];
+
+            elements.forEach((element) => {
+              if (element.textContent.startsWith("?")) {
+                matchingElements.push(element);
+              }
+            });
+
+            return matchingElements;
+          }
+
+          function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+          }
+
+          async function DoJob(){
+            const elements = getElementsStartingWithQuestionMark();
+            var Name = [];
+            var NonIdentified = [];
+
+            const data = JSON.parse(localStorage.getItem("UserDetails"));
+
+            //Place Elements in desired arrays
+            elements.forEach((element) => {
+              const text = element.textContent.toLowerCase();
+
+
+              if (text.includes("name")) {
+                Name.push(element);
+              } else {
+                NonIdentified.push(element);
+              }
+            });
+
+            Name.forEach((un) => {
+              var un_ = un.textContent;
+              if (un_.includes('|')){
+                un_ = un_.split("|");
+                un_ = data.General.FullName + un_[1];
+              } else {
+                un_ = data.General.FullName;
+              };
+              un.textContent = un_;
+            });
+        };
+
+        DoJob();
+    </script>
+  </body>
+</html>
