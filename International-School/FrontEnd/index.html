@@ -1,9 +1,9 @@
 <html>
   <head lang="en">
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <link rel="stylesheet" type="text/css" href="HomeSection.css" />
-    <link rel="stylesheet" type="text/css" href="OurMission.css" />
-
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <link rel="stylesheet" type="text/css" href="./css/Facilities.css" />
+    <link rel="stylesheet" type="text/css" href="./css/HomeSection.css" />
+    <link rel="stylesheet" type="text/css" href="./css/aboutUsSection.css" />
     <title>InterNational School</title>
     <link rel="icon" href="Assets/logo.png" type="image/x-icon" />
   </head>
@@ -14,72 +14,249 @@
         <h1>InterNational School</h1>
       </div>
       <div class="nav">
-        <a href="#welcome-page">Weclome</a>
-        <a href="#mission-page">Mission</a>
-        <a href="#academics-page">Academics</a>
-        <a href="about.html" id="NOT">About</a>
+        <a href="#welcome-page">Welcome</a>
+        <a href="#about-page">About Us</a>
+        <a href="#facilities">Facilities</a>
+
+        <a href="#contactUs">Contact Us</a>
         <a href="./signup.html" id="NOT">Admissions</a>
       </div>
       <div class="user-dropdown">
         <div class="user-info">
-          <a class="login" id="LoginButton" href="#" onclick="checkLogin(event)"><img alt="Login" src="Assets/Account.png"/></a>
-        </div>
-
-        <div class="dropdown-content">
-          <a href="#">Home</a>
-          <a href="./dashboard.html">DashBoard</a>
-          <a href="./Messages.html">Message Center</a>
-          <a href="./settings.html">Settings</a>
-          <a href="./AR.html">Attendence Record</a>
-          <a href="./Payment.html">Fees</a>
-          <a href="./Performance.html">Report Card</a>
-          <a href="./SubjectTeachers">Subject Teachers</a>
-          <a href="./Facilities.html">Facilities</a>
-          <a href="./CSD.html">Change Student Details</a>
-          <hr />
-          <a onclick="LogOut(event)">Logout</a>
+          <a class="login" id="LoginButton" href="#" onclick="checkLogin(event)"
+            ><img alt="Login" src="Assets/Account.png"
+          /></a>
         </div>
       </div>
     </div>
     <div id="page-content">
       <div id="welcome-page" class="page">
         <h1 id="WelcomeTo">Welcome to InterNational School</h1>
-
-        <p id="p1">Where it is a Community of Learners and Leaders</p>
-        <br />
-        <p id="p2">
-          We, at InterNational School, believe in Building Bright Futures
-          Together
-        </p>
       </div>
-
-      <div id="mission-page" class="page">
-        <div class="leftMission"></div>
-        <div class="rightMission">
+      <div id="about-page" class="page">
+        <div class="intro">
+          <h2>ABOUT US</h2>
           <p>
-            Our mission is to provide a safe, nurturing environment where
-            students can learn and grow. We believe that every student is unique
-            and capable of success, and we strive to help each one discover
-            their passions and talents.
+            At InterNational School, we provide a supportive and inclusive
+            learning environment that fosters academic excellence, creativity,
+            and personal growth. Our mission is to empower students with the
+            knowledge, skills, and values necessary to succeed in an
+            ever-changing world. We strive to make learning a joyful and
+            engaging experience with a team of experienced educators and a
+            commitment to innovation. Our school community is built on respect,
+            empathy, and responsibility. We encourage students to take an active
+            role in their educational journey and aim to inspire a lifelong love
+            of learning. By working together, we help our students thrive and
+            reach their full potential.
           </p>
         </div>
-      </div>
-
-      <div id="academics-page" class="page">
-        <div class="leftAcademics">
-          <p>
-            We offer a wide range of academic and non-academic programs to help
-            our students grow and develop. Our academic offerings include core
-            subjects such as math, science, and language arts, as well as
-            electives such as art, music, and physical education. In addition, we
-            offer a variety of extracurricular activities, including sports teams,
-            clubs, and service organizations.
-          </p>
+        <div class="mission-vision-plan">
+          <div class="mission">
+            <div class="tittle">
+              <img src="./Assets/OurMission2.jpeg" alt="" />
+              <hr />
+              <div class="text">
+                At InterNational School, we empower students to become
+                confident, compassionate, and responsible individuals through
+                academic excellence, creativity, and social growth. We deliver
+                high-quality education tailored to each student's needs,
+                inspiring a love of learning that lasts a lifetime. We will
+                ensure that our students develop both the skills that a sound
+                education provides and the competencies essential for success
+                and leadership in the emerging creative economy.
+              </div>
+            </div>
+          </div>
+          <div class="vision">
+            <div class="title">
+              <img src="Assets/VisionImg2.jpeg" alt="" />
+              <hr />
+            </div>
+            <div class="text">
+              At InterNational School, we believe that every child is unique,
+              with their own interests and strengths. We strive to nurture these
+              individual talents, whether in academics, sports, or other areas,
+              to help our students grow into confident and well-rounded
+              individuals. By embracing this diverse and inclusive approach, we
+              aim to empower our students to become creative problem-solvers,
+              responsible citizens, and future leaders who make a positive
+              impact in the world.
+            </div>
+          </div>
+          <div class="plan">
+            <div class="title">
+              <img src="Assets/VisionLogoIMG.jpeg" alt="" />
+              <hr />
+            </div>
+            <div class="text">
+              Our plan to achieve our vision focuses on three key areas:
+              Academic Excellence, where we will provide a rigorous and engaging
+              curriculum with personalized learning experiences; Personalized
+              Development, where we will offer extracurricular activities,
+              sports, and clubs to develop diverse interests and talents; and
+              Community Engagement, where we will foster a sense of community
+              and social responsibility through volunteer work, community
+              service, and partnerships with local organizations.
+            </div>
+          </div>
         </div>
-        <div class="rightAcademics"></div>
+      </div>
+      <div id="facilities" class="page">
+        <h2 class="mainTitle">FACILITIES</h2>
+        <div class="content">
+          <div class="data">
+            <div class="icon">
+              <img src="./Assets/school-bus.png" alt="" />
+            </div>
+            <h4 class="title">School Bus</h4>
+            <p class="desc">
+              The school provides a safe and reliable bus facility with
+              experienced drivers and GPS tracking. This facility is available
+              for students of all grades, making it convenient for parents.
+            </p>
+          </div>
+          <div class="data">
+            <div class="icon">
+              <img src="./Assets/flask.png" alt="" />
+            </div>
+            <h4 class="title">Science Lab</h4>
+            <p class="desc">
+              Our science lab fosters curiosity and experimentation with
+              hands-on learning in various scientific disciplines. The lab is
+              equipped with state-of-the-art equipment, chemicals, and specimens
+              for safe experimentation.
+            </p>
+          </div>
+          <div class="data">
+            <div class="icon">
+              <img src="./Assets/pc.png" alt="" />
+            </div>
+            <h4 class="title">Computer Lab</h4>
+            <p class="desc">
+              Our computer lab is equipped with the latest technology and
+              software for hands-on learning. Experienced teachers guide
+              students in learning programming languages, software applications,
+              and digital skills.
+            </p>
+          </div>
+          <br />
+          <div class="data">
+            <div class="icon">
+              <img src="./Assets/stack-of-books.png" alt="" />
+            </div>
+            <h4 class="title">Library</h4>
+            <p class="desc">
+              The school's library is a quiet and comfortable space with a vast
+              collection of books, journals, and digital resources. It fosters a
+              love of reading and learning with a wide range of fiction and
+              non-fiction books.
+            </p>
+          </div>
+          <div class="data">
+            <div class="icon">
+              <img src="./Assets/soccer-ball.png" alt="" />
+            </div>
+            <h4 class="title">Play Ground</h4>
+            <p class="desc">
+              The school's playground is a spacious and well-maintained area for
+              physical activities. It features various sports facilities,
+              including a basketball court, football field, and cricket pitch.
+            </p>
+          </div>
+          <div class="data">
+            <div class="icon">
+              <img src="./Assets/teacher.png" alt="" />
+            </div>
+            <h4 class="title">Smart Classes</h4>
+            <p class="desc">
+              Our smart classes use the latest digital technology, including
+              interactive whiteboards and educational software. These classes
+              provide an engaging and immersive learning experience for
+              students.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div id="contactUs" class="page">
+        <h2 class="mainTitle">CONTACT US</h2>
+        <div class="data">
+          <div class="phone-number">
+            <div class="title">
+              <img src="./Assets/phone-call.png" alt=""><br/>
+              <h2>Phone Number</h2>
+              <p>+91 1234567890</p>
+            </div>
+          </div>
+          <div class="address">
+            <div class="title">
+              <img src="./Assets/location.png" alt=""><br/>
+              <h2>Location</h2>
+              <p>XYZ, OPQ, Pune, Maharashtra, India</p>
+            </div>
+          </div>
+          <div class="email">
+            <div class="title">
+              <img src="./Assets/email.png" alt=""><br/>
+              <h2>Email</h2>
+              <p>xyz@gmail.com</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+    <footer>
+      <div class="school-info">
+        <img src="./Assets/logo-highres.png" alt="School Logo">
+        <span>InterNational School</span><br>
+        <a href="./about.html">About Us</a>
 
+      </div>
+      <div class="credits">
+        &copy; 2024 InterNational, All rights reserved. <br>
+        <credits style="text-align: center;">
+          <a
+            href="https://www.flaticon.com/free-icons/school-bus"
+            title="school bus icons"
+            >School bus icons created by Zhaficon - Flaticon</a><br><a
+            href="https://www.flaticon.com/free-icons/football-helmet"
+            title="football helmet icons"
+            >Football helmet icons created by Candy Design - Flaticon</a
+          ><br>
+          <a href="https://www.flaticon.com/free-icons/books" title="books icons"
+            >Books icons created by popo2021 - Flaticon</a
+          ><br>
+          <a
+            href="https://www.flaticon.com/free-icons/chemistry"
+            title="chemistry icons"
+            >Chemistry icons created by Freepik - Flaticon</a
+          ><br>
+          <a
+            href="https://www.flaticon.com/free-icons/computer"
+            title="computer icons"
+            >Computer icons created by Smashicons - Flaticon</a
+          ><br><a
+            href="https://www.flaticon.com/free-icons/teacher"
+            title="teacher icons"
+            >Teacher icons created by Flat Icons - Flaticon</a
+          ><br>
+          <a
+            href="https://www.flaticon.com/free-icons/location"
+            title="location icons"
+            >Location icons created by Smashicons - Flaticon</a
+          ><br>
+          <a
+            href="https://www.flaticon.com/free-icons/phone-call"
+            title="phone call icons"
+            >Phone call icons created by Freepik - Flaticon</a
+          ><br>
+          <a href="https://www.flaticon.com/free-icons/email" title="email icons"
+            >Email icons created by Pixel perfect - Flaticon</a
+          ><br></credits
+        >
+      </div>
+      <div class="about-us">
+      </div>
+    </footer>
     <script
       src="https://www.gstatic.com/firebasejs/9.8.0/firebase-app.js"
       type="module"
@@ -112,24 +289,29 @@
           localStorage.removeItem("user");
           localStorage.removeItem("UserDetails");
           window.location.href = "./index.html";
-        } else if (localStorage.getItem("UserDetails")){
+        } else if (localStorage.getItem("UserDetails")) {
           localStorage.removeItem("UserDetails");
           window.location.href = "./index.html";
-        }else {
+        } else {
           console.log("User is not logged in");
           window.location.href = "./login.html";
         }
-      };
+      }
     </script>
-    <div class="credits">
-      <credits id="credits">
-        Photo by Pixabay:
-        https://www.pexels.com/photo/red-building-with-clock-tower-207692/ Photo
-        by Ann H:
-        https://www.pexels.com/photo/wooden-letters-on-a-cardboard-11022648/
-        <a href="https://www.flaticon.com/free-icons/user" title="user icons">User icons created by Freepik - Flaticon</a>
-
-      </credits>
-    </div>
+  <!-- <div class="credits">
+    <credits id="credits">
+      Photo by Pixabay:
+      https://www.pexels.com/photo/red-building-with-clock-tower-207692/ Photo
+      by Ann H:
+      https://www.pexels.com/photo/wooden-letters-on-a-cardboard-11022648/
+      <a href="https://www.flaticon.com/free-icons/user" title="user icons"
+        >User icons created by Freepik - Flaticon</a
+      ><a href="https://www.flaticon.com/free-icons/school-bus" title="school bus icons">School bus icons created by Zhaficon - Flaticon</a><a href="https://www.flaticon.com/free-icons/football-helmet" title="football helmet icons">Football helmet icons created by Candy Design - Flaticon</a>
+    <a href="https://www.flaticon.com/free-icons/books" title="books icons">Books icons created by popo2021 - Flaticon</a>
+  <a href="https://www.flaticon.com/free-icons/chemistry" title="chemistry icons">Chemistry icons created by Freepik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/computer" title="computer icons">Computer icons created by Smashicons - Flaticon</a><a href="https://www.flaticon.com/free-icons/teacher" title="teacher icons">Teacher icons created by Flat Icons - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/location" title="location icons">Location icons created by Smashicons - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/phone-call" title="phone call icons">Phone call icons created by Freepik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/email" title="email icons">Email icons created by Pixel perfect - Flaticon</a></credits> -->
   </body>
 </html>

@@ -1,103 +1,98 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>InterNational School</title>
-        <link href="./Assets/logo.png" rel="icon" type="image/x-icon">
-        <link rel="stylesheet" href="./style.css">
-        <link rel="stylesheet" href="./about.css">
-    </head>
-    <body>
-        <div class="header">
-            <div class="logo">
-              <a href="./index.html" id="LogoImg"><img src="./Assets/logo-highres.png" alt="Logo" id="LogoImg" /></a>
-              <h1>InterNational School</h1>
-            </div>
-            <div class="nav">
-              <a href="./index.html">Welcome</a>
-              <a href="./index.html#mission-page">Mission</a>
-              <a href="./index.html#academics-page">Academics</a>
-              <a href="#">About</a>
-              <a href="./signup.html">Admissions</a>
-            </div>
-            <div class="user-dropdown">
-              <div class="user-info">
-                <a class="login" id="LoginButton" href="#" onclick="checkLogin(event)"><img alt="Login" src="Assets/Account.png"/></a>
-              </div>
-
-              <div class="dropdown-content">
-                <a href="./index.html">Home</a>
-                <a href="./dashboard.html">DashBoard</a>
-                <a href="./Messages.html">Message Center</a>
-                <a href="./settings.html">Settings</a>
-                <a href="./AR.html">Attendence Record</a>
-                <a href="./Payment.html">Fees</a>
-                <a href="./Performance.html">Report Card</a>
-                <a href="./SubjectTeachers">Subject Teachers</a>
-                <a href="./Facilities.html">Facilities</a>
-                <a href="./CSD.html">Change Student Details</a>
-                <hr />
-                <a onclick="LogOut(event)">Logout</a>
-              </div>
-            </div>
-          </div>
-          </div>
-        <div class="Main">
-            <a href="./index.html"><img src="./Assets/logo-highres.png"></a>
-            <h1>About Us</h1>
+  <head>
+    <meta charset="utf-8" />
+    <title>InterNational School</title>
+    <link href="./Assets/logo.png" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/about.css" />
+  </head>
+  <body>
+    <div class="header">
+      <div class="logo">
+        <a href="./index.html" id="LogoImg"
+          ><img src="./Assets/logo-highres.png" alt="Logo" id="LogoImg"
+        /></a>
+        <h1>InterNational School</h1>
+      </div>
+      <div class="nav">
+        <a href="./index.html">Welcome</a>
+        <a href="./index.html#mission-page">Mission</a>
+        <a href="./index.html#academics-page">Academics</a>
+        <a href="#">About</a>
+        <a href="./signup.html">Admissions</a>
+      </div>
+      <div class="user-dropdown">
+        <div class="user-info">
+          <a class="login" id="LoginButton" href="#" onclick="checkLogin(event)"
+            ><img alt="Login" src="Assets/Account.png"
+          /></a>
         </div>
-        <div class="Writing">
-            <p>We are not actually a company. We are just some students who made this website as a project for <b>Bits and Brushes</b></p>
-            <p>All the Credit for making this website goes to :-</p>
-            <ul style="font-size: 1.6vw;">
-                <li><b>JavaScript and Firebase</b> -> Akshobhya Sasun</li>
-                <li><b>UI Design</b> -> Jenil Pokar</li>
-                <li><b>HTML and CSS</b> -> Akshobhya Sasun and Jenil Pokar</li>
-                <ul id="PagesAbout" style="font-size: 1.6vw;">
-                    <li><b>Main Page</b> -> Jenil Pokar + Akshobhya (CSS 10%)</li>
-                    <li><b>About Page</b> -> Akshobhya Sasun</li>
-                    <li><b>Login Page</b> -> Akshobhya Sasun + Jenil Pokar</li>
-                    <li><b>SignUp Page</b> -> Akshobhya Sasun + Jenil Pokar</li>
-                    <li><b>DashBoard Page</b> -> Akshobhya Sasun + Jenil Pokar</li>
-                    <li><b>Messages Page</b> -> Akshobhya Sasun</li>
-                    <li><b>Settings Page</b> -> Jenil Pokar</li>
-                    <li><b>Facilities Page</b> -> Akshobhya Sasun + Jenil Pokar</li>
-                    <li><b>Forgot Page</b> -> Akshobhya Sasun + Jenil Pokar</li>
-                    <li><b>Change Student Details Page</b> -> Akshobhya Sasun + Jenil Pokar</li>
-                </ul>
-            </ul>
-        </div>
-        <script>
-          function LogOut(event) {
-            event.preventDefault();
+      </div>
+    </div>
+    <div class="Main">
+      <a href="./index.html"><img src="./Assets/logo-highres.png" /></a>
+      <h1>About Us</h1>
+    </div>
+    <div class="Writing">
+      <p>
+        We are not actually a company. We are just some students who made this
+        website as a project for <b>Bits and Brushes</b>
+      </p>
+      <p>All the Credit for making this website goes to :-</p>
+      <ul style="font-size: 1.6vw">
+        <li><b>JavaScript and Firebase</b> -> Akshobhya Sasun</li>
+        <li><b>UI Design</b> -> Jenil Pokar</li>
+        <li><b>HTML and CSS</b> -> Akshobhya Sasun and Jenil Pokar</li>
+        <ul id="PagesAbout" style="font-size: 1.6vw">
+          <li><b>Main Page</b> -> Jenil Pokar</li>
+          <li><b>About Page(This Page)</b> -> Akshobhya Sasun</li>
+          <li><b>About US Page(Main Page)</b> -> Jenil Pokar</li>
+          <li><b>Login Page</b> -> Akshobhya Sasun + Jenil Pokar</li>
+          <li><b>SignUp Page</b> -> Akshobhya Sasun + Jenil Pokar</li>
+          <li><b>DashBoard Page</b> -> Akshobhya Sasun + Jenil Pokar</li>
+          <li><b>Messages Page</b> -> Akshobhya Sasun</li>
+          <li><b>Settings Page</b> -> Jenil Pokar</li>  
+          <li><b>Facilities Page</b> -> Akshobhya Sasun + Jenil Pokar</li>
+          <li><b>Forgot Page</b> -> Akshobhya Sasun + Jenil Pokar</li>
+          <li>
+            <b>Change Student Details Page</b> -> Akshobhya Sasun + Jenil Pokar
+          </li>
+        </ul>
+      </ul>
+    </div>
 
-            if (localStorage.getItem("user")) {
-              localStorage.removeItem("user");
-              localStorage.removeItem("UserDetails");
-              window.location.href = "./index.html";
-            } else if (localStorage.getItem("UserDetails")){
-              localStorage.removeItem("UserDetails");
-              window.location.href = "./index.html";
-            }else {
-              console.log("User is not logged in");
-              window.location.href = "./login.html";
-            }
-          };
-        </script>
-        <script>
-          function checkLogin(event) {
-            // Prevent the default behavior of the anchor tag
-            event.preventDefault();
+    <script>
+      function LogOut(event) {
+        event.preventDefault();
 
-            // Check if the user is logged in (based on session storage)
-            if (localStorage.getItem('UserDetails')) {
-              // Redirect to the dashboard page
-              window.location.href = './dashboard.html';
-            } else {
-              // If the user is not logged in, redirect to the login page
-              window.location.href = './login.html';
-            }
-          };
-        </script>
-    </body>
+        if (localStorage.getItem("user")) {
+          localStorage.removeItem("user");
+          localStorage.removeItem("UserDetails");
+          window.location.href = "./index.html";
+        } else if (localStorage.getItem("UserDetails")) {
+          localStorage.removeItem("UserDetails");
+          window.location.href = "./index.html";
+        } else {
+          console.log("User is not logged in");
+          window.location.href = "./login.html";
+        }
+      }
+    </script>
+    <script>
+      function checkLogin(event) {
+        // Prevent the default behavior of the anchor tag
+        event.preventDefault();
+
+        // Check if the user is logged in (based on session storage)
+        if (localStorage.getItem("UserDetails")) {
+          // Redirect to the dashboard page
+          window.location.href = "./dashboard.html";
+        } else {
+          // If the user is not logged in, redirect to the login page
+          window.location.href = "./login.html";
+        }
+      }
+    </script>
+  </body>
 </html>

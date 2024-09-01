@@ -16,7 +16,7 @@
       </div>
       <div class="user-dropdown">
         <div class="user-info">
-          <img src="./Assets/Account.png" alt="user img"/>
+          <img src="./Assets/Account.png" alt="user img" />
           <div class="text">
             <h4>?Name</h4>
           </div>
@@ -39,7 +39,7 @@
       </div>
     </header>
 
-    <h1 id="Main-Text" style="text-align: center;"> DashBoard </h1>
+    <h1 id="Main-Text" style="text-align: center">DashBoard</h1>
 
     <div class="dashboard-content">
       <div class="leftSection">
@@ -71,7 +71,10 @@
           </table>
         </div>
         <div class="UnreadMessages">
-          <div class="unread-messages-table" style="overflow-y: auto; overflow-x: auto;">
+          <div
+            class="unread-messages-table"
+            style="overflow-y: auto; overflow-x: auto"
+          >
             <div class="tittle">
               <hr />
             </div>
@@ -82,7 +85,7 @@
                 </caption>
               </table>
               <p id="NUM">No unread Messages</p>
-              <a id="GTM" href="./MessageCenter.html">Go to Message Center</a>
+              <a id="GTM" href="./Message.html">Go to Message Center</a>
             </div>
           </div>
         </div>
@@ -98,21 +101,16 @@
           </div>
           <div class="data">
             <p class="EventText">?Event 0</p>
-            <p class="EventText">?Event 0</p>
             <hr />
-            <p class="ExamText">?Event 1</p>
             <p class="ExamText">?Event 1</p>
             <hr />
             <p class="HolidayText">?Event 2</p>
-            <p class="HolidayText">?Event 2</p>
             <hr />
-            <p class="HolidayText">?Event 3</p>
             <p class="HolidayText">?Event 3</p>
             <hr />
             <p class="HolidayText">?Event 4</p>
           </div>
         </div>
-        <div class="PhotoAlbums">create a photo album slideshow</div>
       </div>
     </div>
     <script>
@@ -127,35 +125,39 @@
           console.log("User is not logged in");
           window.location.href = "./login.html";
         }
-      };
+      }
     </script>
     <script type="module">
-      import {getData} from "../BackEnd/RTDB.js";
+      import { getData } from "../BackEnd/RTDB.js";
 
       function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-      };
+        return new Promise((resolve) => setTimeout(resolve, ms));
+      }
 
-      let data_ = '';
+      let data_ = "";
 
-      async function messages(){
-        getData("Students/"+JSON.parse(localStorage.getItem("UserDetails")).General.Admission_No+"/Messages").then((data)=>{
+      async function messages() {
+        getData(
+          "Students/" +
+            JSON.parse(localStorage.getItem("UserDetails")).General
+              .Admission_No +
+            "/Messages"
+        ).then((data) => {
           data_ = data;
           data_ = Array.from(Object.values(data_));
-        })
+        });
 
         await sleep(1500);
 
         console.log(data_);
 
-        if (data_ == []){
+        if (data_ == []) {
           document.getElementById("NUM").style.display = "block";
           document.getElementById("GTM").style.display = "block";
         } else {
-
           var alltrue = true;
           data_.forEach((element) => {
-            if (element.Read == "false"){
+            if (element.Read == "false") {
               var el = document.createElement("tr");
               var elel = document.createElement("td");
               var elele = document.createElement("a");
@@ -164,21 +166,21 @@
               el.appendChild(elel);
 
               elel.appendChild(elele);
-              elele.href = "./Message.html?"+JSON.stringify(element)
+              elele.href = "./Message.html?" + JSON.stringify(element);
               elele.textContent = element.Subject;
               alltrue = false;
-            };
+            }
           });
 
-          document.getElementById("NUM").style.display="none";
-          document.getElementById("GTM").style.display="none";
-        };
-      };
+          document.getElementById("NUM").style.display = "none";
+          document.getElementById("GTM").style.display = "none";
+        }
+      }
 
       messages();
     </script>
     <script type="module">
-      import {getData} from "../BackEnd/RTDB.js"
+      import { getData } from "../BackEnd/RTDB.js";
 
       function getElementsStartingWithQuestionMark() {
         const elements = document.querySelectorAll("*:not(script):not(style)"); // Exclude scripts and styles
@@ -194,10 +196,10 @@
       }
 
       function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
+        return new Promise((resolve) => setTimeout(resolve, ms));
       }
 
-      async function DoJob(){
+      async function DoJob() {
         const elements = getElementsStartingWithQuestionMark();
         var username = [];
         var phone = [];
@@ -224,9 +226,9 @@
             DOB.push(element);
           } else if (text.includes("grade")) {
             Grade.push(element);
-          } else if (text.includes("job")){
+          } else if (text.includes("job")) {
             job.push(element);
-          } else if (text.includes("event")){
+          } else if (text.includes("event")) {
             events.push(element);
           } else {
             NonIdentified.push(element);
@@ -241,87 +243,87 @@
         //Process text
         username.forEach((un) => {
           var un_ = un.textContent;
-          if (un_.includes('|')){
+          if (un_.includes("|")) {
             un_ = un_.split("|");
             un_ = data.General.Admission_No + un_[1];
           } else {
             un_ = data.General.Admission_No;
-          };
+          }
           un.textContent = un_;
         });
 
         Admission_No.forEach((un) => {
           var un_ = un.textContent;
-          if (un_.includes('|')){
+          if (un_.includes("|")) {
             un_ = un_.split("|");
             un_ = data.General.Admission_No + un_[1];
           } else {
             un_ = data.General.Admission_No;
-          };
+          }
           un.textContent = un_;
         });
 
         phone.forEach((un) => {
           var un_ = un.textContent;
-          if (un_.includes('|')){
+          if (un_.includes("|")) {
             un_ = un_.split("|");
             un_ = data.Contact.PhoneNo + un_[1];
           } else {
             un_ = data.Contact.PhoneNo;
-          };
+          }
           un.textContent = un_;
         });
 
         Name.forEach((un) => {
           var un_ = un.textContent;
-          if (un_.includes('|')){
+          if (un_.includes("|")) {
             un_ = un_.split("|");
             un_ = data.General.FullName + un_[1];
           } else {
             un_ = data.General.FullName;
-          };
+          }
           un.textContent = un_;
         });
 
         DOB.forEach((un) => {
           var un_ = un.textContent;
-          if (un_.includes('|')){
+          if (un_.includes("|")) {
             un_ = un_.split("|");
             un_ = data.General.DOB + un_[1];
           } else {
             un_ = data.General.DOB;
-          };
+          }
           un.textContent = un_;
         });
 
         Grade.forEach((un) => {
           var un_ = un.textContent;
-          if (un_.includes('|')){
+          if (un_.includes("|")) {
             un_ = un_.split("|");
             un_ = data.General.Grade + un_[1];
           } else {
             un_ = data.General.Grade;
-          };
+          }
           un.textContent = un_;
         });
 
         job.forEach((un) => {
           var un_ = un.textContent;
-          if (un_.includes('|')){
+          if (un_.includes("|")) {
             const regex = /^\d{4}$/;
             un_ = un_.split("|");
-            if (regex.test(data.General.Admission_No)){
-              un_ = "Student"+un_[1];
+            if (regex.test(data.General.Admission_No)) {
+              un_ = "Student" + un_[1];
             } else {
-              un_ = "Teacher"+un_[1];
-            };
+              un_ = "Teacher" + un_[1];
+            }
           } else {
-            if (regex.test(data.General.Admission_No)){
+            if (regex.test(data.General.Admission_No)) {
               un_ = "Student";
             } else {
               un_ = "Teacher";
-            };
-          };
+            }
+          }
 
           un.textContent = un_;
         });
@@ -340,30 +342,30 @@
         events.forEach((un) => {
           var un_ = un.textContent;
           var id = "";
-          if (un_.includes(" ")){
+          if (un_.includes(" ")) {
             un_ = un_.split(" ");
             id = un_[1];
-          };
+          }
           const data = new_data[id];
           var Date_ = "";
 
-          if (data.Date.includes("*")){
+          if (data.Date.includes("*")) {
             Date_ = data.Date.split("*");
-            if (Date_[1].toLowerCase() == "event"){
+            if (Date_[1].toLowerCase() == "event") {
               un.style.borderColor = "green";
-            } else if (Date_[1].toLowerCase() == "holiday"){
+            } else if (Date_[1].toLowerCase() == "holiday") {
               un.style.borderColor = "blue";
-            } else if (Date_[1].toLowerCase() == "exam"){
+            } else if (Date_[1].toLowerCase() == "exam") {
               un.style.borderColor = "red";
             } else {
               un.style.borderColor = "black";
-            };
-          };
+            }
+          }
 
           un_ = data.Name + " (" + Date_[0] + ")";
           un.textContent = un_;
         });
-      };
+      }
       DoJob();
     </script>
   </body>
