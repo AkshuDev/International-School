@@ -3,7 +3,7 @@
 ## Authors
 
 * Akshobhya Sasun (Akshobhyasasun@gmail.com, pheonix.community.mail@gmail.com)
-* Jenil Poker
+* Jenil Pokar
 
 ## Project Description
 
